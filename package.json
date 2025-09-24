@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-   "dev": "astro dev --config astro.config.dev.mjs",
+    "dev": "astro dev --config astro.config.dev.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -12,11 +12,12 @@
     "@astrojs/cloudflare": "^12.6.9",
     "@astrojs/mdx": "^4.3.6",
     "@astrojs/tailwind": "^6.0.2",
+    "@tailwindcss/typography": "^0.5.13",
     "astro": "^5.13.10",
-    "tailwindcss": "^3.4.1",
-    "@tailwindcss/typography": "^0.5.13"
+    "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
-    "@astrojs/node": "^9.4.4"
+    "@astrojs/node": "^9.4.4",
+    "typescript": "^5.9.2"
   }
 }

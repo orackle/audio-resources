@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Card from "../components/Card.astro";
+import { getCollection } from 'astro:content';
+
+const all = await getCollection('cards');
+const items = all.filter((c) => c.data.category === 'DAWs');
+---
+
+<BaseLayout title="DAWs — EQ, compression, mic’ing, more">
+  <h1 style="font-size: var(--fs-h1); margin: 0 0 var(--space-2) 0;">DAWs</h1>
+
+  {/* TODO: left filter rail (chips) → instrument, genre, process */}
+  <section class="grid">
+    {items.map((entry) => <Card entry={entry} />)}
+  </section>
+</BaseLayout>

@@ -1,0 +1,128 @@
+/* design tokens for dark + light; data-theme controls which set is active */
+
+/* default theme (dark) */
+:root {
+  --theme-name: dark;
+
+  /* Color — Dark */
+  --bg: #121715;         /* Deep forest green */
+  --surface: #1a211f;    /* Dark slate */
+  --surface-2: #222c29;  /* Slightly lighter slate */
+  --border: #2f3a37;     /* Muted green-gray border */
+  --text: #e8ece0;       /* Soft off-white */
+  --muted: #8a9b94;      /* Muted sage green */
+  --accent: #8fbc8f;     /* Soft sage green */
+  --accent-light: #b8c9b8; /* Lighter sage for hover states */
+
+  /* States */
+  --focus: var(--accent);
+  --danger: #ff5c5c;
+  --ok: #38e08f;
+  --warn: #f2c94c;
+
+  /* Type ramp */
+  --fs-h1: 1.5rem;     /* 24px */
+  --fs-h2: 1.25rem;    /* 20px */
+  --fs-h3: 1.125rem;   /* 18px */
+  --fs-body: 0.9375rem; /* 15px */
+  --fs-small: 0.8125rem; /* 13px */
+  --fs-micro: 0.75rem;  /* 12px */
+  
+  /* Line heights */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+
+  /* Letter spacing */
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+
+  /* Spacing */
+  --space-0: 0.25rem;  /* 4px */
+  --space-1: 0.5rem;   /* 8px */
+  --space-2: 1rem;     /* 16px */
+  --space-3: 1.5rem;   /* 24px */
+  --space-4: 2rem;     /* 32px */
+  --space-5: 3rem;     /* 48px */
+  --space-6: 4rem;     /* 64px */
+  
+  /* Border radius */
+  --radius-sm: 0.25rem;  /* 4px */
+  --radius: 0.5rem;      /* 8px */
+  --radius-lg: 0.75rem;  /* 12px */
+  --radius-full: 9999px;
+
+  /* Shape & shadow */
+  --radius-xs: 8px;
+  --radius: 14px;
+  --radius-xl: 20px;
+  --shadow: 0 6px 16px rgba(0,0,0,0.18);
+
+  /* Motion */
+  --easing: cubic-bezier(.2,.8,.2,1);
+  --fast: .12s;
+  --normal: .18s;
+
+  /* Layout */
+  --container: 1100px;
+
+  /* Z-index */
+  --z-header: 50;
+  --z-overlay: 100;
+  --z-toast: 200;
+}
+
+/* theme: dark (explicit) */
+:root[data-theme="dark"] {
+  --theme-name: dark;
+  --bg: #121715;         /* Deep forest green */
+  --surface: #1a211f;    /* Dark slate */
+  --surface-2: #222c29;  /* Slightly lighter slate */
+  --border: #2f3a37;     /* Muted green-gray border */
+  --text: #e8ece0;       /* Soft off-white */
+  --muted: #8a9b94;      /* Muted sage green */
+  --accent: #8fbc8f;     /* Soft sage green */
+  --accent-light: #b8c9b8; /* Lighter sage for hover states */
+  --focus: #8fbc8f;
+  --shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+
+/* theme: light */
+:root[data-theme="light"] {
+  --theme-name: light;
+  --bg: #f8faf8;         /* Soft white with a hint of green */
+  --surface: #ffffff;    /* Pure white */
+  --surface-2: #f1f5f1;  /* Subtle off-white with green tint */
+  --border: #d0d9d0;     /* Soft green-gray */
+  --text: #1a231e;       /* Deep forest green for better contrast */
+  --muted: #6a7a6d;      /* Muted sage green */
+  --accent: #4a7c59;     /* Rich forest green */
+  --accent-light: #5d9970; /* Lighter forest green for hover states */
+  --focus: #4a7c59;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  
+  /* Enhanced states for better visibility */
+  --danger: #e74c3c;     /* Vibrant red for errors */
+  --ok: #27ae60;         /* Fresh green for success */
+  --warn: #f39c12;       /* Warm orange for warnings */
+  
+  /* Add a subtle accent color for highlights */
+  --highlight: rgba(93, 153, 112, 0.1);
+}
+
+/* system preference → only applied if user hasn’t chosen a theme */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) { /* if no explicit choice, respect system light */
+    --theme-name: light;
+    --bg: #f8f7f4;
+    --surface: #ffffff;
+    --surface-2: #f2f2f2;
+    --border: #e5e7eb;
+    --text: #0e1012;
+    --muted: #6b7280;
+    --accent: #8b7cf2;
+    --focus: #8b7cf2;
+    --shadow: 0 6px 16px rgba(0,0,0,0.06);
+  }
+}

@@ -1,16 +1,47 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Card from "../content/cards/components/Card.astro";
+import { getCollection } from 'astro:content';
 
+// for MVP, just show latest or hand-picked popular cards
+const all = await getCollection('cards');
+const featured = all.slice(0, 8); // TODO: replace with popularity later
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Audio Devhints — Clean, fast resources.">
+  {/* Hero: search box + scope chips */}
+  <section class="search-hero" style="margin-bottom: var(--space-6);">
+    <div class="search-container">
+      <h1 style="font-size: var(--fs-h1); text-align: center; margin: 0 0 var(--space-3) 0;">Find it fast.</h1>
+      
+      <form action="/search" role="search" aria-label="Site search" class="search-form">
+        <input
+          name="q"
+          placeholder="Search EQ, compression, progressions, Ableton…"
+          class="search-input"
+        />
+      </form>
+
+      {/* scope chips — these prefill query later */}
+      <div class="search-chips">
+        <a class="chip" href="/audio">EQ</a>
+        <a class="chip" href="/audio">Compression</a>
+        <a class="chip" href="/audio">Reverb</a>
+        <a class="chip" href="/theory">Scales</a>
+        <a class="chip" href="/theory">Progressions</a>
+        <a class="chip" href="/daws">Ableton</a>
+        <a class="chip" href="/daws">Logic</a>
+      </div>
+    </div>
+  </section>
+
+  {/* Featured cards */}
+  <section class="quickref">
+    <h2 style="font-size: var(--fs-h2); margin: 0 0 var(--space-3) 0;">Featured</h2>
+    <div class="quickref-grid">
+      {featured.map((entry) => (
+        <Card {entry} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

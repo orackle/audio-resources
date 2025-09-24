@@ -1,0 +1,25 @@
+---
+/**
+ * Card component.
+ * props:
+ *  - entry: content collection item (from "cards")
+ *  - compact?: boolean
+ */
+const { entry, compact = false } = Astro.props;
+const data = entry.data;
+---
+
+<article class="quickref-card">
+  <header>
+    <h2><a href={`/card/${entry.slug}`}>{data.title}</a></h2>
+    {!compact && <p class="lede">{data.summary}</p>}
+  </header>
+  
+  <div class="quickref-card-content">
+    {compact && <p class="summary">{data.summary}</p>}
+    
+    <div class="chips" aria-label="Tags">
+      {data.tags?.slice(0, 3).map((t) => <span class="chip">{t}</span>)}
+    </div>
+  </div>
+</article>

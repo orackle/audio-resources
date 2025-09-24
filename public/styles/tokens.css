@@ -1,0 +1,22 @@
+/* tokens: one accent, calm neutrals, 8-pt rhythm */
+:root {
+    --bg: #0b0d0e;
+    --surface: #121416;
+    --text: #e8eaea;
+    --muted: #a6aead;
+    --accent: #8ff0c3;
+  
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+  
+    --fs-h1: 30px;
+    --fs-h2: 22px;
+    --fs-body: 16px;
+    --fs-micro: 12px;
+  
+    --radius: 14px;
+    --shadow: 0 6px 16px rgba(0,0,0,0.18);
+  }
+  

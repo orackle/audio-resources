@@ -1,0 +1,621 @@
+/* Base styles: reset-ish, typography, layout, components, utilities, motion, a11y */
+
+/* -------- reset-ish -------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+html:focus-within { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 var(--fs-body)/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+
+/* -------- layout shell -------- */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-2);
+}
+.site-header, .site-footer {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  backdrop-filter: saturate(160%) blur(8px);
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+.site-header {
+  display: flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-2) var(--space-2);
+}
+.brand {
+  color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: .2px;
+}
+.topnav { display: flex; align-items: center; gap: var(--space-2); }
+.topnav a {
+  color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: var(--radius-xs);
+  transition: color var(--fast) var(--easing), background var(--fast) var(--easing);
+}
+.topnav a:hover, .topnav a:focus-visible { color: var(--text); background: var(--surface-2); }
+.site-footer {
+  position: static;
+  padding: var(--space-3) var(--space-2);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+/* -------- accessibility -------- */
+.skip {
+  position: absolute; 
+  left: -9999px; 
+  top: auto; 
+  width: 1px; 
+  height: 1px; 
+  overflow: hidden;
+  padding: var(--space-1) var(--space-2);
+  background: var(--surface); 
+  color: var(--text);
+  z-index: 9999;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.skip:focus-visible {
+  position: fixed; 
+  left: var(--space-2); 
+  top: var(--space-2); 
+  width: auto; 
+  height: auto;
+  clip: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Buttons and interactive elements */
+button, .button, [role="button"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-appearance: none;
+  appearance: none;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover, .button:hover, [role="button"]:hover {
+  background: var(--surface-2);
+  border-color: var(--border);
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+button:active, .button:active, [role="button"]:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+button:focus, .button:focus, [role="button"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--focus);
+}
+
+/* Primary button variant */
+button.primary, .button.primary, [role="button"].primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+button.primary:hover, .button.primary:hover, [role="button"].primary:hover {
+  background: var(--accent-light);
+  border-color: var(--accent-light);
+  color: var(--bg);
+}
+
+/* Ghost button variant */
+button.ghost, .button.ghost, [role="button"].ghost {
+  background: transparent;
+  border-color: transparent;
+}
+
+button.ghost:hover, .button.ghost:hover, [role="button"].ghost:hover {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+/* Small button variant */
+button.small, .button.small, [role="button"].small {
+  padding: 0.25rem 0.75rem;
+  font-size: var(--fs-micro);
+  border-radius: var(--radius-sm);
+}
+
+/* Icon button */
+button.icon, .button.icon, [role="button"].icon {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button with icon */
+.button > svg, button > svg, [role="button"] > svg {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+/* -------- typography -------- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: var(--fs-body);
+  line-height: var(--leading-normal);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 var(--space-2) 0;
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  color: var(--text);
+  letter-spacing: var(--tracking-tight);
+}
+
+h1 { 
+  font-size: var(--fs-h1);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.02em;
+}
+
+h2 { 
+  font-size: var(--fs-h2);
+  margin: var(--space-4) 0 var(--space-2) 0;
+}
+
+h3 { 
+  font-size: var(--fs-h3);
+  margin: var(--space-3) 0 var(--space-2) 0;
+}
+
+p, ul, ol, dl {
+  margin: 0 0 var(--space-3) 0;
+  line-height: var(--leading-normal);
+  color: var(--text);
+  max-width: 65ch;
+}
+
+small, .muted { 
+  font-size: var(--fs-small);
+  color: var(--muted);
+  line-height: var(--leading-tight);
+}
+
+/* Links */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-light);
+  text-decoration: none;
+}
+
+/* Remove underlines from article links */
+article a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+article a:hover {
+  border-bottom-color: transparent;
+}
+
+/* ===== Search ===== */
+.search-hero {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4) var(--space-2);
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.search-container {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.search-form {
+  position: relative;
+  margin-bottom: var(--space-3);
+  transition: transform 0.2s ease;
+}
+
+.search-form:focus-within {
+  transform: translateY(-1px);
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid transparent;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--accent);
+}
+
+.search-input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.search-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  animation: fadeIn 0.6s ease-out 0.1s both;
+}
+
+.chip {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  opacity: 0.9;
+}
+
+.chip:hover {
+  background: var(--accent);
+  color: var(--bg);
+  transform: translateY(-1px);
+  opacity: 1;
+  border-color: transparent;
+}
+
+/* Add subtle stagger animation for chips */
+.chip:nth-child(1) { animation-delay: 0.1s; }
+.chip:nth-child(2) { animation-delay: 0.15s; }
+.chip:nth-child(3) { animation-delay: 0.2s; }
+.chip:nth-child(4) { animation-delay: 0.25s; }
+.chip:nth-child(5) { animation-delay: 0.3s; }
+.chip:nth-child(6) { animation-delay: 0.35s; }
+
+/* -------- buttons -------- */
+button, .button {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 12px; border-radius: 10px; cursor: pointer;
+  color: var(--text); background: var(--surface-2); border: 1px solid var(--border);
+  transition: transform var(--fast) var(--easing), border-color var(--fast) var(--easing), background var(--fast) var(--easing);
+}
+button:hover, .button:hover { transform: translateY(-1px); border-color: color-mix(in oklab, var(--border) 70%, var(--text) 30%); }
+button:active, .button:active { transform: translateY(0); }
+button.primary { background: var(--accent); color: #07110c; border-color: transparent; }
+button.ghost { background: transparent; }
+
+/* -------- chips & badges -------- */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-size: var(--fs-micro); line-height: 1;
+  color: var(--text); background: var(--surface-2); border: 1px solid var(--border);
+  padding: 6px 10px; border-radius: 999px;
+}
+
+/* -------- grid & card -------- */
+.grid {
+  display: grid; gap: var(--space-2);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  box-shadow: var(--shadow);
+  border: 1px solid transparent;
+  transition: transform var(--normal) var(--easing), border-color var(--fast) var(--easing), background var(--fast) var(--easing);
+}
+.card:where(:hover, :focus-within) { transform: translateY(-2px); border-color: var(--border); }
+.card h3 { margin: 0 0 var(--space-1) 0; font-size: var(--fs-h2); }
+.card .summary { color: var(--muted); margin: 0 0 var(--space-2) 0; }
+.card .actions { display: flex; gap: 8px; }
+
+/* -------- search hero -------- */
+.search-hero { margin-bottom: var(--space-4); }
+.search-hero h1 { margin-bottom: var(--space-2); }
+.search-hero .scope { margin-top: var(--space-2); }
+
+/* -------- pagefind (static search) cosmetics -------- */
+/* When you wire Pagefind, it injects a container—style it to match. */
+.pagefind-ui__form {
+  display: flex; align-items: center; gap: 8px;
+  background: #111416; border: 1px solid var(--border); border-radius: 12px;
+  padding: 8px 10px;
+}
+.pagefind-ui__input { background: transparent; border: none; color: var(--text); width: 100%; }
+.pagefind-ui__button { display: none; }
+.pagefind-ui__results {
+  margin-top: var(--space-2);
+  display: grid; gap: var(--space-2);
+}
+.pagefind-ui__result {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-2);
+}
+.pagefind-ui__result-title { font-size: var(--fs-h3); margin: 0 0 4px 0; }
+.pagefind-ui__result-excerpt mark { background: color-mix(in oklab, var(--accent) 35%, transparent); }
+
+/* -------- skeletons (loading placeholders) -------- */
+.skeleton {
+  position: relative; overflow: hidden; background: var(--surface-2);
+  border-radius: 10px; min-height: 14px;
+}
+.skeleton::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--text) 6%, transparent), transparent);
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+/* -------- toast (for "Liked" feedback) -------- */
+.toast {
+  position: fixed; inset: auto var(--space-2) var(--space-2) auto;
+  z-index: var(--z-toast);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: var(--space-2);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transform: translateY(8px);
+  opacity: 0;
+  transition: transform var(--normal) var(--easing), opacity var(--normal) var(--easing);
+}
+
+
+
+/* ---------- quickref skin (devhints/quickref.me) ---------- */
+.quickref {
+  --card-max: 1200px;
+  --card-gap: 1.5rem;
+  --card-min: 300px;
+  max-width: var(--card-max);
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+}
+
+/* Main grid layout */
+.quickref-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--card-min)), 1fr));
+  gap: var(--card-gap);
+  margin: var(--space-4) 0;
+}
+
+/* Card styles */
+.quickref-card {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: var(--space-3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.4s ease-out;
+  will-change: transform, box-shadow;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.quickref-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  border-color: var(--accent);
+}
+
+/* Card header */
+.quickref-card > header {
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-2);
+  position: relative;
+}
+
+.quickref-card > header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.6;
+  transition: width 0.3s ease;
+}
+
+.quickref-card:hover > header::after {
+  width: 60px;
+}
+
+.quickref-card h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text);
+  font-weight: 600;
+  transition: color 0.2s ease;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  display: inline-block;
+  padding: 0;
+  position: relative;
+}
+
+/* Remove any potential underline from links within card titles */
+.quickref-card h2 a {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  color: inherit;
+}
+
+.quickref-card:hover h2 {
+  color: var(--accent);
+}
+
+.quickref-card .lede {
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.quickref-card:hover .lede {
+  opacity: 1;
+}
+
+/* Content inside cards */
+.quickref-card-content {
+  flex: 1;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.quickref-card:hover .quickref-card-content {
+  opacity: 1;
+}
+
+/* Stagger animation for cards */
+.quickref-grid > * {
+  animation: fadeInUp 0.5s ease-out both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger delay for cards */
+.quickref-grid > *:nth-child(1) { animation-delay: 0.1s; }
+.quickref-grid > *:nth-child(2) { animation-delay: 0.15s; }
+.quickref-grid > *:nth-child(3) { animation-delay: 0.2s; }
+.quickref-grid > *:nth-child(4) { animation-delay: 0.25s; }
+.quickref-grid > *:nth-child(5) { animation-delay: 0.3s; }
+.quickref-grid > *:nth-child(6) { animation-delay: 0.35s; }
+
+/* Definition lists for key→value cheats */
+.quickref dl { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: var(--space-1);
+  margin: 0;
+}
+
+.quickref dt {
+  color: var(--text);
+  font-weight: 600;
+  font-size: var(--fs-body);
+}
+.quickref dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* compact lists */
+.quickref ul { padding-left: 1.1rem; }
+.quickref li + li { margin-top: 6px; }
+
+/* inline code look (for commands/values) */
+.quickref code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95em;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 2px 6px; border-radius: 6px;
+}
+
+/* tables: simple borders, header tint */
+.quickref table { width: 100%; border-collapse: collapse; }
+.quickref th, .quickref td { border: 1px solid var(--border); padding: 8px 10px; }
+.quickref th { text-align: left; background: var(--surface-2); }
+
+/* quickref "note" callout */
+.quickref .note {
+  background: color-mix(in oklab, var(--accent) 8%, transparent);
+  border: 1px dashed color-mix(in oklab, var(--accent) 30%, var(--border));
+  padding: var(--space-2);
+  border-radius: var(--radius);
+}
+
+/* anchors on headings (devhints style) */
+.quickref h2[id], .quickref h3[id] {
+  scroll-margin-top: 80px; /* avoid hiding under sticky header */
+}
+.quickref h2[id]::after, .quickref h3[id]::after {
+  /* I reveal a subtle link on hover/focus */
+  content: " ¶";
+  opacity: 0;
+  color: var(--muted);
+  font-weight: 400;
+}
+.quickref h2[id]:hover::after, .quickref h3[id]:hover::after,
+.quickref h2[id]:focus-within::after, .quickref h3[id]:focus-within::after { opacity: .8; }

@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, getEntry } from 'astro:content';
+import { Content } from 'astro:content';
+
+// slug from URL
+const { slug } = Astro.params;
+
+// load the card by slug
+const all = await getCollection('cards');
+const entry = all.find((e) => e.data.slug === Astro.params.slug);
+
+// not found → simple 404
+if (!entry) {
+  throw new Error(`Card not found: ${slug}`);
+}
+
+const d = entry.data;
+
+// find related cards by slug for "See also"
+const related = all.filter((e) => d.related?.includes(e.slug));
+---
+
+<BaseLayout title={`${d.title} — The Cue Sheet`} description={d.summary}>
+  <article class="quickref">
+    <header>
+      <h1>{d.title}</h1>
+      <p class="lede">{d.summary}</p>
+    </header>
+
+    {/* tags + actions as you already have */}
+    <div class="chips" style="margin-bottom: var(--space-2);">
+      {d.tags?.map((t) => <span class="chip">{t}</span>)}
+    </div>
+
+    {/* rest of content renders here; quickref styles apply to Markdown */}
+    <Content content={entry} />
+  </article>
+</BaseLayout>
+

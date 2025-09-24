@@ -1,24 +1,32 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection, getEntry } from 'astro:content';
-import { Content } from 'astro:content';
+import { getCollection } from 'astro:content';
 
-// slug from URL
-const { slug } = Astro.params;
-
-// load the card by slug
-const all = await getCollection('cards');
-const entry = all.find((e) => e.data.slug === Astro.params.slug);
-
-// not found → simple 404
-if (!entry) {
-  throw new Error(`Card not found: ${slug}`);
+export async function getStaticPaths() {
+  const allCards = await getCollection('cards');
+  return allCards.map(card => ({
+    params: { slug: card.slug },
+    props: { card },
+  }));
 }
 
-const d = entry.data;
+// Get the card from props passed by getStaticPaths
+const { card } = Astro.props;
 
-// find related cards by slug for "See also"
-const related = all.filter((e) => d.related?.includes(e.slug));
+// Log the card structure for debugging
+console.log('Card object:', JSON.stringify(card, null, 2));
+
+// Access the card data directly from the card object
+const d = card.data;
+
+// Load all cards for related items
+const allCards = await getCollection('cards');
+
+// Find related cards by slug for "See also"
+const related = d.related ? allCards.filter((e) => d.related.includes(e.slug)) : [];
+
+// Log the related items for debugging
+console.log('Related items:', related.map(r => r.slug).join(', '));
 ---
 
 <BaseLayout title={`${d.title} — The Cue Sheet`} description={d.summary}>
@@ -28,13 +36,31 @@ const related = all.filter((e) => d.related?.includes(e.slug));
       <p class="lede">{d.summary}</p>
     </header>
 
-    {/* tags + actions as you already have */}
-    <div class="chips" style="margin-bottom: var(--space-2);">
-      {d.tags?.map((t) => <span class="chip">{t}</span>)}
-    </div>
+    {/* tags */}
+    {d.tags && d.tags.length > 0 && (
+      <div class="chips" style="margin-bottom: var(--space-2);">
+        {d.tags.map((t) => (
+          <span class="chip">{t}</span>
+        ))}
+      </div>
+    )}
 
-    {/* rest of content renders here; quickref styles apply to Markdown */}
-    <Content content={entry} />
+    {/* main content */}
+    <div class="content" set:html={card.body} />
+
+    {/* related cards */}
+    {related.length > 0 && (
+      <div class="related">
+        <h2>See also</h2>
+        <ul>
+          {related.map((item) => (
+            <li>
+              <a href={`/card/${item.slug}`}>{item.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
   </article>
 </BaseLayout>
 

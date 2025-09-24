@@ -1,0 +1,166 @@
+# =========================
+# Node / JavaScript
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json.lock
+# If you use pnpm store in repo (usually not)
+.pnpm-store/
+
+# =========================
+# Build outputs
+# (adjust to your framework)
+# =========================
+dist/
+build/
+.out/
+.out_* 
+# Astro
+dist/
+.astro/
+.output/
+# Next.js
+.next/
+out/
+# SvelteKit
+.svelte-kit/
+# Vite / general
+.vite/
+# Solid / other frameworks
+build-output/
+
+# =========================
+# Local env / secrets
+# =========================
+.env
+.env.*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.secret
+.secret
+*.pem
+*.key
+*.crt
+aws-credentials
+# AWS CLI credentials (if accidentally present)
+.aws/credentials
+# Firebase service account
+firebase.json
+.firebaserc
+# Google service account
+*.gserviceaccount.json
+
+# =========================
+# Logs, caches, temp
+# =========================
+logs/
+*.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+.cache/
+.tmp/
+.temp/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+.sass-cache/
+.cache-loader/
+.eslintcache
+.parcel-cache/
+
+# =========================
+# Test / coverage
+# =========================
+coverage/
+coverage-final.json
+nyc_output/
+
+# =========================
+# Package manager specific
+# =========================
+# Yarn
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/patches
+!.yarn/releases/*.js
+!.yarn/plugins/*.js
+.pnp.*
+.yarnrc.yml
+# pnpm
+.pnpmfile.cjs
+# npm
+.npmrc
+
+# =========================
+# IDEs / editors
+# =========================
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+ehthumbs.db
+Icon?
+desktop.ini
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+.env.docker
+.Dockerfile.dev
+docker-compose.*.yml
+
+# =========================
+# CI / Deployment / Hosting
+# =========================
+# Netlify
+.netlify/
+.netlify/functions/node_modules
+# Vercel / Now
+.vercel/
+.now/
+# Cloudflare Pages / Workers caches / local artifacts
+.cache-pages/
+wrangler-state/
+# (do NOT ignore wrangler.toml unless you want to keep it out of repo)
+# If you keep secrets locally for wrangler, ignore them:
+wrangler-secrets.json
+
+# =========================
+# Monorepo / workspace tooling
+# =========================
+# Turborepo / Turbo
+.cache/
+turbo/
+# Nx
+dist/
+# Rush
+common/temp/
+# pnpm-workspace
+.pnpm-workspace.yaml
+
+# =========================
+# Misc / local builds (optional)
+# =========================
+*.local
+*.backup
+*.swp
+

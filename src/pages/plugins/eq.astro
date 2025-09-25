@@ -1,8 +1,8 @@
 ---
-import CheatSheet from '../../templates/cheat-sheet.astro';
+import CleanLayout from "../../layouts/CleanLayout.astro";
 
-const title = 'EQ Cheat Sheet';
-const description = 'Frequency ranges and EQ tips for different instruments';
+const title = "EQ Cheat Sheet";
+const description = "Frequency ranges and EQ tips for different instruments";
 
 const sections = [
   {
@@ -63,4 +63,97 @@ const sections = [
 ];
 ---
 
-<CheatSheet {title} {description} {sections} />
+<CleanLayout {title} {description}>
+  <main class="cheat-sheet">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>{title}</h1>
+    
+    {sections.map(section => (
+      <section class="cheat-section">
+        <h2>{section.title}</h2>
+        <div class="cheat-grid">
+          {section.items.map(item => (
+            <div class="cheat-item">
+              <h3>{item.title}</h3>
+              <p>{item.content}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+  </main>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

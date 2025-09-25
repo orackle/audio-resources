@@ -6,10 +6,22 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx()],
+  output: 'static', // Ensure static output for Cloudflare Pages
+  integrations: [
+    tailwindcss({
+      applyBaseStyles: true,
+    }),
+    mdx()
+  ],
   adapter: cloudflare(),
   server: {
     host: true
+  },
+  build: {
+    // Ensure CSS is properly extracted and minified
+    cssMinify: true,
+    // Generate source maps for debugging
+    sourcemap: true,
   },
   vite: {
     server: {

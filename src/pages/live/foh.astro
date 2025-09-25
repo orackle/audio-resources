@@ -1,0 +1,163 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Front of House Mixing";
+const description = "Essential techniques for professional front of house mixing";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Front of House Mixing</h1>
+    
+    <section class="cheat-section">
+      <h2>Mixing Fundamentals</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Gain Structure</h3>
+          <ul>
+            <li>Set proper input gain</li>
+            <li>Use PFL/AFL metering</li>
+            <li>Maintain headroom</li>
+            <li>Check system limits</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>EQ Priorities</h3>
+          <ul>
+            <li>High-pass filters</li>
+            <li>Cut before boosting</li>
+            <li>Address feedback</li>
+            <li>Carve space for vocals</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Dynamics</h3>
+          <ul>
+            <li>Gentle compression</li>
+            <li>Limiters on outputs</li>
+            <li>De-ess vocals</li>
+            <li>Gate toms/kick</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Advanced Techniques</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Effects</h3>
+          <ul>
+            <li>Short reverbs for energy</li>
+            <li>Delays for depth</li>
+            <li>Parallel compression</li>
+            <li>Sidechain ducking</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>System Tuning</h3>
+          <ul>
+            <li>Use measurement mics</li>
+            <li>Time align speakers</li>
+            <li>Set proper crossover points</li>
+            <li>Check phase coherence</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Workflow</h3>
+          <ul>
+            <li>Save show files</li>
+            <li>Use scenes/snapshots</n>
+            <li>Label everything</li>
+            <li>Have backup plans</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .cheat-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

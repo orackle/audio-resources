@@ -1,0 +1,416 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "EQ Cheat Sheet";
+const description = "Essential EQ frequency ranges and tips for audio mixing and mastering.";
+---
+
+<CleanLayout {title} {description}>
+  <main class="cheatsheet-container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+
+    <div class="cheatsheet-header">
+      <h1>EQ Cheat Sheet</h1>
+      <div class="cheatsheet-meta">
+        <span class="version">v1.0</span>
+        <a href="#" class="edit-link">Edit this page</a>
+      </div>
+    </div>
+
+    <div class="cheatsheet-content">
+      <div class="cheatsheet-column">
+        <section class="cheatsheet-section">
+          <h2>Frequency Ranges</h2>
+          <div class="cheatsheet-table">
+            <div class="table-row header">
+              <div class="table-cell">Frequency</div>
+              <div class="table-cell">Description</div>
+              <div class="table-cell">Common Uses</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">20-60Hz</div>
+              <div class="table-cell">Sub-Bass</div>
+              <div class="table-cell">Kick drum, bass, sub-bass</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">60-250Hz</div>
+              <div class="table-cell">Bass</div>
+              <div class="table-cell">Bass guitar, kick drum, toms</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">250-500Hz</div>
+              <div class="table-cell">Low Mids</div>
+              <div class="table-cell">Body of instruments, warmth</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">500Hz-2kHz</div>
+              <div class="table-cell">Mids</div>
+              <div class="table-cell">Presence, attack, vocal clarity</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">2-6kHz</div>
+              <div class="table-cell">Upper Mids</div>
+              <div class="table-cell">Clarity, definition, harshness</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">6-12kHz</div>
+              <div class="table-cell">Presence</div>
+              <div class="table-cell">Brightness, sibilance, air</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">12-20kHz</div>
+              <div class="table-cell">Air</div>
+              <div class="table-cell">Sparkle, sheen, high-end detail</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cheatsheet-section">
+          <h2>Common EQ Moves</h2>
+          <ul class="cheatsheet-list">
+            <li><strong>Cut before boosting</strong> - Clean up muddiness first</li>
+            <li><strong>Narrow Q for cuts</strong> - More precise removal of problem frequencies</li>
+            <li><strong>Wide Q for boosts</strong> - More natural-sounding enhancements</li>
+            <li><strong>High-pass filter</strong> - Remove rumble from non-bass instruments</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="cheatsheet-column">
+        <section class="cheatsheet-section">
+          <h2>Instrument-Specific Tips</h2>
+          <div class="instrument-grid">
+            <div class="instrument-card">
+              <h3>Vocals</h3>
+              <ul>
+                <li><strong>100-200Hz</strong>: Body and warmth</li>
+                <li><strong>3-5kHz</strong>: Presence and clarity</li>
+                <li><strong>10kHz+</strong>: Air and brightness</li>
+              </ul>
+            </div>
+
+            <div class="instrument-card">
+              <h3>Kick Drum</h3>
+              <ul>
+                <li><strong>60-80Hz</strong>: Thump and weight</li>
+                <li><strong>100-120Hz</strong>: Boominess</li>
+                <li><strong>2.5-5kHz</strong>: Beater click</li>
+              </ul>
+            </div>
+
+            <div class="instrument-card">
+              <h3>Electric Guitar</h3>
+              <ul>
+                <li><strong>100-200Hz</strong>: Fullness</li>
+                <li><strong>800Hz-1kHz</strong>: Honkiness</li>
+                <li><strong>3-5kHz</strong>: Presence and cut</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    :root {
+      /* Rich Earthy color palette */
+      --primary: #6B4E3B;      /* Deep brown */
+      --primary-dark: #4A3A2B;  /* Dark chocolate */
+      --accent: #9C6B3D;       /* Rusty orange-brown */
+      --text: #3A2E25;         /* Rich dark brown for main text */
+      --text-light: #6B5A4A;   /* Muted brown for secondary text */
+      --border: #B8A58E;       /* Warm beige */
+      --bg: #F0E6D8;          /* Warm parchment */
+      --code-bg: #E0D4C3;     /* Light warm beige */
+      --radius: 4px;
+      --shadow: 0 2px 6px rgba(44, 36, 28, 0.08);
+      --font-mono: 'Space Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace;
+    }
+
+    .cheatsheet-container {
+      width: 100%;
+      margin: 0;
+      padding: 0.5em 9em;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .back-link {
+      margin-bottom: 3rem;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .back-link a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .back-link a:hover {
+      color: var(--accent);
+    }
+
+    .cheatsheet-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cheatsheet-header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 0.5rem 0;
+    }
+
+    .cheatsheet-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    .version {
+      background: var(--code-bg);
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius);
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+    }
+
+    .edit-link {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .edit-link:hover {
+      text-decoration: underline;
+    }
+
+    .cheatsheet-content {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 3rem;
+      align-items: start;
+      width: 100%;
+      padding: 2rem 1.5rem;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    .cheatsheet-section {
+      margin-bottom: 3rem;
+      
+    }
+
+    .cheatsheet-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .cheatsheet-section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 1.5rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary);
+      color: var(--text);
+      display: inline-block;
+    }
+
+    .instrument-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .instrument-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .instrument-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .instrument-card h3 {
+      margin: 0 0 1rem 0;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .instrument-card ul {
+      margin: 0;
+      padding: 0 0 0 1.2rem;
+    }
+
+    .instrument-card li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .instrument-card li:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      .cheatsheet-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 1.5rem 1rem;
+      }
+      
+      .cheatsheet-container {
+        padding: 0;
+      }
+      
+      .cheatsheet-header h1 {
+        font-size: 1.8rem;
+        padding: 0 1rem;
+      }
+    }
+
+    .instrument-card {
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      min-height: 160px;
+    }
+
+    .instrument-card h3 {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      margin-left: 0;
+      margin-right: 0;
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .instrument-card ul {
+      margin: 0;
+      padding-left: 1rem;
+      padding-right: 0;
+    }
+
+    .instrument-card li {
+      margin-bottom: 1rem;
+      margin-left: 0;
+      margin-right: 0;
+      line-height: 1.7;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .cheatsheet-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: transparent;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .table-row {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .table-row:last-child {
+      border-bottom: none;
+    }
+
+    .table-row.header {
+      font-weight: 600;
+      background: transparent;
+    }
+
+    .table-cell {
+      padding: 1.25rem 0 1.25rem 1.5rem;
+      text-align: left;
+      flex: 1;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .table-cell:first-child {
+      flex: 0 0 130px;
+      font-family: 'Space Grotesk', monospace;
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .cheatsheet-list {
+      padding: 0;
+      list-style: none;
+    }
+
+    .cheatsheet-list li {
+      margin: 0 0 1.25rem 0;
+      padding: 0;
+      line-height: 1.7;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .cheatsheet-list strong {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .cheatsheet-container {
+        padding: 2rem 1.5rem;
+      }
+
+      .cheatsheet-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .cheatsheet-section {
+        margin-bottom: 3rem;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .cheatsheet-section h2 {
+        margin-bottom: 1.75rem;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .instrument-card {
+        padding: 1.5rem;
+        min-height: 140px;
+      }
+
+      .instrument-card h3 {
+        margin-bottom: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .back-link {
+        margin-bottom: 2.5rem;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .table-cell:first-child {
+        flex: 0 0 100px;
+      }
+    }
+  </style>
+</CleanLayout>

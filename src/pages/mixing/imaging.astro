@@ -1,0 +1,211 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Stereo Imaging Guide";
+const description = "Techniques for creating wide, balanced stereo mixes";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Stereo Imaging Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Stereo Field Fundamentals</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>LCR Panning</h3>
+          <ul>
+            <li><strong>Left:</strong> Hard panned left (100%L)</li>
+            <li><strong>Center:</strong> Mono center (0%)</li>
+            <li><strong>Right:</strong> Hard panned right (100%R)</li>
+            <li>Creates clear separation</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Stereo Imaging</h3>
+          <ul>
+            <li>Width: 0-100% spread</li>
+            <li>Mid/Side balance</li>
+            <li>Stereo enhancers</li>
+            <li>Haas effect</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Panning Techniques</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Traditional Panning</h3>
+          <ul>
+            <li>Drums: Drummer's perspective</li>
+            <li>Guitars: Hard L/R for double tracks</li>
+            <li>Vocals: Center or slightly off-center</li>
+            <li>Bass: Center for mono compatibility</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Auto-Panning</h3>
+          <ul>
+            <li>Rate: 1/4 to 1/16 notes</n>
+            <li>Depth: 30-70% for subtle movement</li>
+            <li>Shape: Sine for smooth, square for hard cuts</li>
+            <li>Great for pads and effects</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Mid/Side Processing</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>M/S EQ</h3>
+          <ul>
+            <li>Mid: 200-500Hz for clarity</li>
+            <li>Side: Boost highs for air</li>
+            <li>Cut low-end from sides</li>
+            <li>Enhance stereo width</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>M/S Compression</h3>
+          <ul>
+            <li>Compress mid for focus</li>
+            <li>Light compression on sides</li>
+            <li>Enhance stereo field</li>
+            <li>Maintain mono compatibility</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Stereo Imaging by Instrument</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Drums</h3>
+          <ul>
+            <li>Kick/Snare: Center</li>
+            <li>Hi-hats: Slightly right</li>
+            <li>Toms: Pan as if on drum kit</li>
+            <li>Overheads: Hard L/R</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Guitars</h3>
+          <ul>
+            <li>Rhythm: Hard L/R</li>
+            <li>Lead: Center or slightly off</li>
+            <li>Acoustic: 30-50% L/R</li>
+            <li>Wide stereo effects</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Vocals</h3>
+          <ul>
+            <li>Lead: Center</li>
+            <li>Doubles: Hard L/R</li>
+            <li>Harmonies: 30-50% L/R</n>
+            <li>ADT for width</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-section h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cheat-item ul {
+    padding-left: 1.2rem;
+    margin: 0.75rem 0 0 0;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,157 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Sound Effects Guide";
+const description = "Creating and processing sound effects for media";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Sound Effects Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Sound Design Techniques</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Foley</h3>
+          <ul>
+            <li>Record clean, isolated sounds</li>
+            <li>Layer for complexity</li>
+            <li>Match perspective (close/far)</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Synthesis</h3>
+          <ul>
+            <li>Create sci-fi sounds with FM</li>
+            <li>Use noise for whooshes</li>
+            <li>Modulate everything</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Processing</h3>
+          <ul>
+            <li>Reverse sounds for impact</li>
+            <li>Use gates for stutters</li>
+            <li>Pitch down for weight</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Common SFX Categories</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Impacts</h3>
+          <ul>
+            <li>Layer low end with mid/high</li>
+            <li>Add debris/particles</li>
+            <li>Use reverb for size</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Whooshes</h3>
+          <ul>
+            <li>Noise + filter sweep</li>
+            <li>Add doppler effect</li>
+            <li>Use for transitions</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>UI Sounds</h3>
+          <ul>
+            <li>Keep them short</li>
+            <li>Use musical tones</li>
+            <li>Create variations</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .cheat-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

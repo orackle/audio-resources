@@ -1,0 +1,163 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Live Sound Troubleshooting";
+const description = "Quick reference for solving common live sound issues";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Live Sound Troubleshooting</h1>
+    
+    <section class="cheat-section">
+      <h2>Common Issues & Solutions</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>No Sound</h3>
+          <ul>
+            <li>Check power to all devices</li>
+            <li>Verify all cables are connected</li>
+            <li>Check mixer channel routing</li>
+            <li>Test with known working source</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Hum/Buzz</h3>
+          <ul>
+            <li>Check for ground loops</li>
+            <li>Use balanced connections</li>
+            <li>Check cable shielding</li>
+            <li>Try different power outlets</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Feedback</h3>
+          <ul>
+            <li>Reposition microphones/speakers</li>
+            <li>Use graphic EQ to cut problem frequencies</li>
+            <li>Turn down monitor levels</li>
+            <li>Use directional mics</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Quick Fixes</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Distortion</h3>
+          <ul>
+            <li>Check gain staging</li>
+            <li>Look for clipping indicators</li>
+            <li>Check speaker impedance</li>
+            <li>Verify input levels</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Wireless Issues</h3>
+          <ul>
+            <li>Check battery levels</li>
+            <li>Scan for clear frequencies</li>
+            <li>Check antenna placement</li>
+            <li>Verify transmitter settings</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>EQ Problems</h3>
+          <ul>
+            <li>Reset EQ to flat</li>
+            <li>Make smaller adjustments</n>
+            <li>Use high-pass filters</li>
+            <li>Reference other sources</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .cheat-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

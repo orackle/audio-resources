@@ -1,0 +1,129 @@
+---
+import CleanLayout from "../../../layouts/CleanLayout.astro";
+
+const title = "Logic Pro Shortcuts";
+const description = "Essential keyboard shortcuts for Logic Pro";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Logic Pro Shortcuts</h1>
+    
+    <section class="shortcut-section">
+      <h2>Navigation</h2>
+      <div class="shortcut-grid">
+        <div class="shortcut-item">
+          <kbd>Cmd + 1-7</kbd>
+          <span>Switch between main windows</span>
+        </div>
+        <div class="shortcut-item">
+          <kbd>Cmd + Option + B</kbd>
+          <span>Show/hide Smart Controls</span>
+        </div>
+        <div class="shortcut-item">
+          <kbd>Cmd + Option + K</kbd>
+          <span>Show/hide musical typing</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="shortcut-section">
+      <h2>Editing</h2>
+      <div class="shortcut-grid">
+        <div class="shortcut-item">
+          <kbd>T</kbd>
+          <span>Open tool menu</span>
+        </div>
+        <div class="shortcut-item">
+          <kbd>Cmd + D</kbd>
+          <span>Duplicate</span>
+        </div>
+        <div class="shortcut-item">
+          <kbd>Cmd + T</kbd>
+          <span>Split at playhead</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="shortcut-section">
+      <h2>Transport</h2>
+      <div class="shortcut-grid">
+        <div class="shortcut-item">
+          <kbd>Space</kbd>
+          <span>Play/Stop</span>
+        </div>
+        <div class="shortcut-item">
+          <kbd>R</kbd>
+          <span>Record/Record toggle</span>
+        </div>
+        <div class="shortcut-item">
+          <kbd>Cmd + .</kbd>
+          <span>Toggle metronome</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .shortcut-section {
+    margin-bottom: 3rem;
+  }
+
+  .shortcut-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .shortcut-item {
+    background: var(--surface);
+    padding: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .shortcut-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  kbd {
+    display: block;
+    background: var(--surface-2);
+    padding: 0.6rem;
+    border-radius: 6px;
+    font-family: 'SF Mono', 'Roboto Mono', monospace;
+    margin-bottom: 0.75rem;
+    text-align: center;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 768px) {
+    .shortcut-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

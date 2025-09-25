@@ -1,0 +1,217 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Scales Reference";
+const description = "Comprehensive reference for major, minor, and modal scales";
+---
+
+<CleanLayout {title} {description}>
+  <main class="cheatsheet-container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+
+    <div class="cheatsheet-header">
+      <h1>Scales Reference</h1>
+      <div class="cheatsheet-meta">
+        <span class="version">v1.0</span>
+        <a href="#" class="edit-link">Edit this page</a>
+      </div>
+    </div>
+
+    <div class="cheatsheet-content">
+      <div class="cheatsheet-column">
+        <section class="cheatsheet-section">
+          <h2>Major Scale</h2>
+          <div class="cheatsheet-table">
+            <div class="table-row header">
+              <div class="table-cell">Note</div>
+              <div class="table-cell">Formula</div>
+              <div class="table-cell">C Major</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Tonic</div>
+              <div class="table-cell">1</div>
+              <div class="table-cell">C</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Supertonic</div>
+              <div class="table-cell">2</div>
+              <div class="table-cell">D</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Mediant</div>
+              <div class="table-cell">3</div>
+              <div class="table-cell">E</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Subdominant</div>
+              <div class="table-cell">4</div>
+              <div class="table-cell">F</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Dominant</div>
+              <div class="table-cell">5</div>
+              <div class="table-cell">G</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Submediant</div>
+              <div class="table-cell">6</div>
+              <div class="table-cell">A</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Leading Tone</div>
+              <div class="table-cell">7</div>
+              <div class="table-cell">B</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cheatsheet-section">
+          <h2>Minor Scales</h2>
+          <div class="cheatsheet-table">
+            <div class="table-row header">
+              <div class="table-cell">Scale Type</div>
+              <div class="table-cell">Formula</div>
+              <div class="table-cell">A Minor</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Natural Minor</div>
+              <div class="table-cell">1 2 ♭3 4 5 ♭6 ♭7</div>
+              <div class="table-cell">A B C D E F G</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Harmonic Minor</div>
+              <div class="table-cell">1 2 ♭3 4 5 ♭6 7</div>
+              <div class="table-cell">A B C D E F G#</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Melodic Minor (Asc)</div>
+              <div class="table-cell">1 2 ♭3 4 5 6 7</div>
+              <div class="table-cell">A B C D E F# G#</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Melodic Minor (Desc)</div>
+              <div class="table-cell">1 2 ♭3 4 5 ♭6 ♭7</div>
+              <div class="table-cell">A B C D E F G</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="cheatsheet-column">
+        <section class="cheatsheet-section">
+          <h2>Pentatonic Scales</h2>
+          <div class="cheatsheet-table">
+            <div class="table-row header">
+              <div class="table-cell">Scale Type</div>
+              <div class="table-cell">Formula</div>
+              <div class="table-cell">C Major/A Minor</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Major Pentatonic</div>
+              <div class="table-cell">1 2 3 5 6</div>
+              <div class="table-cell">C D E G A</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Minor Pentatonic</div>
+              <div class="table-cell">1 ♭3 4 5 ♭7</div>
+              <div class="table-cell">A C D E G</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Blues Scale</div>
+              <div class="table-cell">1 ♭3 4 ♭5 5 ♭7</div>
+              <div class="table-cell">A C D D# E G</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cheatsheet-section">
+          <h2>Scale Patterns</h2>
+          <div class="cheatsheet-tips">
+            <div class="tip">
+              <h4>Major Scale Pattern</h4>
+              <p>W-W-H-W-W-W-H</p>
+              <p class="tip-detail">(Whole, Whole, Half, Whole, Whole, Whole, Half)</p>
+            </div>
+            <div class="tip">
+              <h4>Natural Minor Pattern</h4>
+              <p>W-H-W-W-H-W-W</p>
+              <p class="tip-detail">(Whole, Half, Whole, Whole, Half, Whole, Whole)</p>
+            </div>
+            <div class="tip">
+              <h4>Harmonic Minor Pattern</h4>
+              <p>W-H-W-W-H-WH-H</p>
+              <p class="tip-detail">(Whole, Half, Whole, Whole, Half, Whole+Half, Half)</p>
+            </div>
+            <div class="tip">
+              <h4>Melodic Minor (Ascending)</h4>
+              <p>W-H-W-W-W-W-H</p>
+              <p class="tip-detail">(Whole, Half, Whole, Whole, Whole, Whole, Half)</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    :root {
+      --primary: #6B4E3B;
+      --primary-dark: #4A3A2B;
+      --accent: #9C6B3D;
+      --text: #3A2E25;
+      --text-light: #6B5A4A;
+      --border: #B8A58E;
+      --bg: #F0E6D8;
+      --code-bg: #E0D4C3;
+      --radius: 4px;
+      --shadow: 0 2px 6px rgba(44, 36, 28, 0.08);
+      --font-mono: 'Space Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace;
+    }
+
+    .cheatsheet-container { width: 100%; margin: 0; padding: 0.5em 9em; min-height: 100vh; position: relative; }
+    .back-link { margin-bottom: 3rem; margin-left: 0; margin-right: 0; }
+    .back-link a { color: var(--text-light); font-size: 0.9rem; text-decoration: none; transition: color 0.2s ease; }
+    .back-link a:hover { color: var(--accent); }
+    .cheatsheet-header { margin-bottom: 2.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .cheatsheet-header h1 { font-size: 2.2rem; font-weight: 700; color: var(--text); margin: 0 0 0.5rem 0; }
+    .cheatsheet-meta { display: flex; align-items: center; gap: 1rem; color: var(--text-light); font-size: 0.95rem; }
+    .version { background: var(--code-bg); padding: 0.2rem 0.5rem; border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.85em; }
+    .edit-link { color: var(--primary); text-decoration: none; }
+    .edit-link:hover { text-decoration: underline; }
+    .cheatsheet-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; width: 100%; padding: 2rem 1.5rem; max-width: 1800px; margin: 0 auto; }
+    .cheatsheet-section { margin-bottom: 3rem; }
+    .cheatsheet-section:last-child { margin-bottom: 0; }
+    .cheatsheet-section h2 { font-size: 1.5rem; font-weight: 600; margin: 0 0 1.5rem 0; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary); color: var(--text); display: inline-block; }
+    .cheatsheet-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-bottom: 2rem; background: var(--bg); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .table-row { display: flex; border-bottom: 1px solid var(--border); }
+    .table-row:last-child { border-bottom: none; }
+    .table-row.header { font-weight: 600; background: transparent; }
+    .table-cell { padding: 1.25rem 1.5rem; text-align: left; flex: 1; color: var(--text); font-size: 0.95rem; }
+    .table-cell:first-child { flex: 0 0 180px; font-family: 'Space Grotesk', monospace; color: var(--accent); font-weight: 500; font-size: 0.95rem; }
+    .cheatsheet-tips { display: grid; gap: 1.5rem; }
+    .tip { background: var(--bg); border-radius: var(--radius); padding: 1.5rem; border: 1px solid var(--border); }
+    .tip h4 { margin: 0 0 0.75rem 0; color: var(--primary); font-size: 1.1rem; }
+    .tip p { margin: 0 0 0.5rem 0; color: var(--text); line-height: 1.6; }
+    .tip-detail { font-size: 0.9em; color: var(--text-light); font-style: italic; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--border); }
+
+    @media (max-width: 1200px) {
+      .cheatsheet-content { grid-template-columns: 1fr; padding: 1rem 0.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      .cheatsheet-container { padding: 0.5em 1em; }
+      .table-row { flex-direction: column; padding: 1rem; }
+      .table-cell { padding: 0.5rem 0; }
+      .table-cell:first-child { flex: 1; font-weight: 600; padding-bottom: 0.25rem; }
+      .cheatsheet-section h2 { font-size: 1.3rem; }
+      .cheatsheet-header h1 { font-size: 1.8rem; }
+    }
+
+    @media (max-width: 480px) {
+      .cheatsheet-header h1 { font-size: 1.6rem; }
+      .cheatsheet-meta { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    }
+  </style>
+</CleanLayout>

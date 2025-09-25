@@ -1,0 +1,197 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Loudness & Metering Guide";
+const description = "Understanding and achieving optimal loudness in mixing and mastering";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Loudness & Metering Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Loudness Standards</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Streaming Services</h3>
+          <ul>
+            <li><strong>Spotify:</strong> -14 LUFS (normalized to -14 LUFS)</li>
+            <li><strong>Apple Music:</strong> -16 LUFS (normalized to -16 LUFS)</li>
+            <li><strong>YouTube:</strong> -14 LUFS (normalized to -14 LUFS)</li>
+            <li><strong>Tidal:</strong> -14 LUFS (normalized to -14 LUFS)</li>
+            <li><strong>Amazon Music:</strong> -13 LUFS (normalized to -13 LUFS)</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Broadcast & Other</h3>
+          <ul>
+            <li><strong>CD/Download:</strong> -9 to -12 LUFS (industry standard)</li>
+            <li><strong>TV Broadcast:</strong> -23 LUFS (EBU R128)</li>
+            <li><strong>Podcasts:</strong> -16 to -18 LUFS</li>
+            <li><strong>Vinyl:</strong> -10 to -8 LUFS (with special considerations)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Metering & Analysis</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>LUFS vs. dBFS</h3>
+          <ul>
+            <li><strong>LUFS (Loudness Units Full Scale):</strong> Perceived loudness over time</li>
+            <li><strong>dBFS (decibels relative to full scale):</strong> Absolute peak level</li>
+            <li>Always leave -1dBTP (True Peak) headroom for lossy encoding</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Key Metrics</h3>
+          <ul>
+            <li><strong>Integrated LUFS:</strong> Average loudness of entire track</li>
+            <li><strong>Short-term LUFS:</strong> 3-second window</li>
+            <li><strong>Momentary LUFS:</strong> 400ms window</li>
+            <li><strong>True Peak:</strong> Never exceed -1dBTP</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Mixing for Loudness</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Frequency Balance</h3>
+          <ul>
+            <li>High-pass everything that doesn't need low end</li>
+            <li>Control low-mid buildup (200-500Hz)</li>
+            <li>Balance high frequencies for clarity</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Dynamic Control</h3>
+          <ul>
+            <li>Use compression on individual tracks</li>
+            <li>Parallel compression for drums</li>
+            <li>Multiband compression on mix bus</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Mastering for Loudness</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Mastering Chain</h3>
+          <ol>
+            <li>EQ (corrective, then tonal)</li>
+            <li>Multiband compression (if needed)</li>
+            <li>Stereo imaging</li>
+            <li>Limiter (final stage)</li>
+          </ol>
+        </div>
+        <div class="cheat-item">
+          <h3>Limiter Settings</h3>
+          <ul>
+            <li>Start with -0.3dB ceiling</li>
+            <li>Aim for 2-4dB of gain reduction</li>
+            <li>Use true peak limiting</li>
+            <li>Check on multiple systems</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-section h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 1.2rem;
+  }
+
+  .cheat-item ul, .cheat-item ol {
+    padding-left: 1.2rem;
+    margin: 0.75rem 0 0 0;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

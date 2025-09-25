@@ -1,0 +1,97 @@
+---
+import CleanLayout from "../../../layouts/CleanLayout.astro";
+
+const title = "Compression Cheat Sheet";
+const description = "Optimal compression settings for different instruments";
+---
+
+<CleanLayout {title} {description}>
+  <main class="cheat-sheet">
+    <h1>Compression Cheat Sheet</h1>
+    
+    <section class="compression-section">
+      <h2>Vocal Compression</h2>
+      <div class="settings-grid">
+        <div class="setting">
+          <span class="param">Ratio:</span>
+          <span class="value">2:1 to 4:1</span>
+        </div>
+        <div class="setting">
+          <span class="param">Attack:</span>
+          <span class="value">5-30ms</span>
+        </div>
+        <div class="setting">
+          <span class="param">Release:</span>
+          <span class="value">40-200ms</span>
+        </div>
+        <div class="setting">
+          <span class="param">Knee:</span>
+          <span class="value">Soft (6-9dB)</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="compression-section">
+      <h2>Drum Bus</h2>
+      <div class="settings-grid">
+        <div class="setting">
+          <span class="param">Ratio:</span>
+          <span class="value">4:1 to 6:1</span>
+        </div>
+        <div class="setting">
+          <span class="param">Attack:</span>
+          <span class="value">10-30ms</span>
+        </div>
+        <div class="setting">
+          <span class="param">Release:</span>
+          <span class="value">100-300ms</span>
+        </div>
+        <div class="setting">
+          <span class="param">Gain Reduction:</span>
+          <span class="value">2-6dB</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</CleanLayout>
+
+<style>
+  .cheat-sheet {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .compression-section {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+  }
+
+  .settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .setting {
+    background: var(--surface-2);
+    padding: 1rem;
+    border-radius: 6px;
+  }
+
+  .param {
+    font-weight: 600;
+    display: block;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .value {
+    font-family: monospace;
+    font-size: 1.1em;
+  }
+</style>

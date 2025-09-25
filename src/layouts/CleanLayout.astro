@@ -1,0 +1,349 @@
+---
+// Clean layout with just theme toggle and centered content
+import '../styles/global.css';
+
+const { title = 'Audio Cheat Sheets', description = 'Clean, fast resources for audio engineers & musicians.' } = Astro.props;
+
+// Toggle theme function
+const toggleTheme = `
+  const theme = document.documentElement.getAttribute('data-theme');
+  const newTheme = theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Update icon visibility
+  const sunIcon = document.querySelector('.sun-icon');
+  const moonIcon = document.querySelector('.moon-icon');
+  
+  if (newTheme === 'dark') {
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
+  } else {
+    sunIcon.style.display = 'block';
+    moonIcon.style.display = 'none';
+  }
+`;
+---
+
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    
+    <!-- Elegant font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      /* Theme variables */
+      :root {
+        /* Light theme - Refined earthy palette */
+        --bg: #faf9f5;
+        --bg-secondary: #f0ede6;
+        --text: #2c2c2c;
+        --text-secondary: #6b6b6b;
+        --accent: #8b7355;
+        --accent-hover: #a0845c;
+        --border: #d4d0c4;
+        --highlight: #f5f3ef;
+        --font-heading: 'Cormorant Garamond', serif;
+        --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+        
+        /* Spacing */
+        --space-1: 0.25rem;
+        --space-2: 0.5rem;
+        --space-3: 0.75rem;
+        --space-4: 1rem;
+        --space-5: 1.25rem;
+        --space-6: 1.5rem;
+        --space-8: 2rem;
+        --space-10: 2.5rem;
+        --space-12: 3rem;
+        --space-16: 4rem;
+        
+        /* Typography */
+        --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        
+        /* Font sizes */
+        --text-xs: 0.75rem;    /* 12px */
+        --text-sm: 0.875rem;   /* 14px */
+        --text-base: 1rem;     /* 16px */
+        --text-lg: 1.125rem;   /* 18px */
+        --text-xl: 1.25rem;    /* 20px */
+        --text-2xl: 1.5rem;    /* 24px */
+        --text-3xl: 1.875rem;  /* 30px */
+        --text-4xl: 2.25rem;   /* 36px */
+        --text-5xl: 3rem;      /* 48px */
+        
+        /* Line heights */
+        --leading-tight: 1.25;
+        --leading-normal: 1.5;
+        --leading-relaxed: 1.75;
+        
+        /* Sizes */
+        --text-xs: 0.75rem;
+        --text-sm: 0.875rem;
+        --text-base: 1rem;
+        --text-lg: 1.125rem;
+        --text-xl: 1.25rem;
+        --text-2xl: 1.5rem;
+        --text-3xl: 1.875rem;
+        --text-4xl: 2.25rem;
+        
+        /* Transitions */
+        --transition: all 0.2s ease;
+      }
+      
+      /* Dark theme - Refined earthy dark palette */
+      [data-theme="dark"] {
+        --bg: #1c1c1c;
+        --bg-secondary: #252525;
+        --text: #e8e8e8;
+        --text-secondary: #b8b8b8;
+        --accent: #c19a6b;
+        --accent-hover: #d4b48a;
+        --border: #3a3a3a;
+        --highlight: #2a2a2a;
+      }
+      
+      /* Base styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: var(--font-body);
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--bg);
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        letter-spacing: 0.01em;
+      }
+      
+      /* Links */
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color 0.2s ease;
+        position: relative;
+      }
+      
+      a:hover {
+        color: var(--accent-hover);
+      }
+      
+      a::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: -2px;
+        left: 0;
+        background-color: var(--accent);
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.3s ease;
+      }
+      
+      a:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+      
+      /* Headings */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        font-weight: 500;
+        line-height: 1.2;
+        margin: 1.5em 0 0.75em;
+        color: var(--text);
+        letter-spacing: 0.02em;
+      }
+      
+      h1 { font-size: 1.8em; font-weight: 600; }
+      h2 { font-size: 1.5em; font-weight: 500; }
+      h3 { font-size: 1.3em; font-style: italic; }
+      
+      h1 { font-size: var(--text-3xl); }
+      h2 { font-size: var(--text-2xl); }
+      h3 { font-size: var(--text-xl); }
+      
+      p {
+        margin-bottom: 1.25em;
+      }
+      
+      /* Layout */
+      .container {
+        max-width: 75rem;
+        margin: 0 auto;
+        padding: var(--space-8) var(--space-6);
+      }
+      
+      /* Theme toggle */
+      .theme-toggle {
+        position: fixed;
+        top: var(--space-4);
+        right: var(--space-4);
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text);
+        cursor: pointer;
+        transition: var(--transition);
+        z-index: 100;
+      }
+      
+      .theme-toggle:hover {
+        background: var(--border);
+        transform: rotate(15deg);
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95) rotate(15deg);
+      }
+      
+      /* Main content */
+      /* Main content */
+      main {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+      }
+      
+      /* Container for content */
+      .container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        :root {
+          --text-base: 1rem;
+          --text-lg: 1.125rem;
+          --text-xl: 1.25rem;
+          --text-2xl: 1.5rem;
+          --text-3xl: 1.75rem;
+          --text-4xl: 2rem;
+        }
+        
+        main {
+          padding: var(--space-12) var(--space-4);
+        }
+        
+        .container {
+          padding: 0 var(--space-4);
+        }
+      }
+      
+      @media (min-width: 1024px) {
+        :root {
+          --text-base: 1.125rem;
+          --text-lg: 1.25rem;
+          --text-xl: 1.5rem;
+          --text-2xl: 1.875rem;
+          --text-3xl: 2.25rem;
+          --text-4xl: 3rem;
+        }
+        
+        .container {
+          max-width: none;
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  
+  <body>
+    <button class="theme-toggle" aria-label="Toggle dark mode" onclick={toggleTheme}>
+      <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+    
+    <main class="container">
+      <slot />
+    </main>
+    
+    <script is:inline>
+      // Apply theme from localStorage or system preference
+      (function() {
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        
+        // Check system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const systemTheme = prefersDark ? 'dark' : 'light';
+        
+        // Apply theme
+        const theme = savedTheme || systemTheme;
+        document.documentElement.setAttribute('data-theme', theme);
+        
+        // Update icon visibility
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+        
+        if (theme === 'dark') {
+          if (sunIcon) sunIcon.style.display = 'none';
+          if (moonIcon) moonIcon.style.display = 'block';
+        } else {
+          if (sunIcon) sunIcon.style.display = 'block';
+          if (moonIcon) moonIcon.style.display = 'none';
+        }
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+          if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            
+            if (sunIcon && moonIcon) {
+              if (newTheme === 'dark') {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+              } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+              }
+            }
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,209 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Drum Recording Guide";
+const description = "Essential techniques and tips for recording professional drum tracks";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Drum Recording Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Microphone Selection</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Kick Drum</h3>
+          <ul>
+            <li>AKG D112 - Punchy low end</li>
+            <li>Shure Beta 52A - Tight and focused</li>
+            <li>Audix D6 - Modern, scooped sound</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Snare Drum</h3>
+          <ul>
+            <li>Shure SM57 - Industry standard</li>
+            <li>Audix i5 - Brighter alternative</li>
+            <li>Neumann KM 184 - Overhead option</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Toms</h3>
+          <ul>
+            <li>Sennheiser MD 421 - Full-bodied</li>
+            <li>AKG C418 - Clip-on option</li>
+            <li>Shure SM57 - Budget choice</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Overheads</h3>
+          <ul>
+            <li>Neumann U87 - Large diaphragm</li>
+            <li>Rode NT5 - Small diaphragm</li>
+            <li>AKG C414 - Versatile</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Mic Placement</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Kick Drum</h3>
+          <ul>
+            <li>Inside: 2-6" from beater head</li>
+            <li>Outside: 6-12" from reso head</li>
+            <li>Port hole: Align with beater</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Snare Drum</h3>
+          <ul>
+            <li>1-2" above rim, pointing at center</li>
+            <li>45° angle to the head</li>
+            <li>Add bottom mic for snap</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Overheads</h3>
+          <ul>
+            <li>XY: 1-2' above cymbals</li>
+            <li>ORTF: 17cm, 110°</li>
+            <li>Spaced pair: 3:1 rule</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Room Mics</h3>
+          <ul>
+            <li>3-10' from kit</li>
+            <li>Experiment with height</li>
+            <li>Try different polar patterns</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Phase Alignment</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Check Phase</h3>
+          <ul>
+            <li>Solo kick and snare</li>
+            <li>Flip phase on one mic</li>
+            <li>Choose fuller sound</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Overheads</h3>
+          <ul>
+            <li>Check against snare</li>
+            <li>Align in DAW if needed</li>
+            <li>Use phase scope</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Room Mics</h3>
+          <ul>
+            <li>Check against overheads</li>
+            <li>May need delay</li>
+            <li>Trust your ears</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-section h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 1.2rem;
+  }
+
+  .cheat-item ul {
+    padding-left: 1.2rem;
+    margin: 0.75rem 0 0 0;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,163 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "EQ Mastery Guide";
+const description = "Comprehensive guide to professional equalization techniques";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>EQ Mastery Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Frequency Bands</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Sub Bass (20-60Hz)</h3>
+          <ul>
+            <li>Feel rather than hear</li>
+            <li>Cut if not needed</li>
+            <li>Boost with caution</li>
+            <li>Watch for phase issues</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Bass (60-250Hz)</h3>
+          <ul>
+            <li>Fundamentals live here</li>
+            <li>Cut mud around 200-300Hz</li>
+            <li>Add warmth at 100-150Hz</li>
+            <li>Balance kick and bass</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Low Mids (250-500Hz)</h3>
+          <ul>
+            <li>Boxiness area</li>
+            <li>Cut for clarity</li>
+            <li>Add thickness</li>
+            <li>Be careful with boosts</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>EQ Techniques</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Surgical EQ</h3>
+          <ul>
+            <li>Narrow Q (2.0+)</li>
+            <li>For problem frequencies</li>
+            <li>Cut, don't boost</li>
+            <li>Use spectrum analyzer</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Musical EQ</h3>
+          <ul>
+            <li>Wide Q (0.5-1.0)</n>
+            <li>For tone shaping</li>
+            <li>Gentle boosts/cuts</li>
+            <li>Trust your ears</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>High-Pass Filter</h3>
+          <ul>
+            <li>Clean up low end</li>
+            <li>Start at 20Hz</li>
+            <li>Adjust per instrument</li>
+            <li>Don't overdo it</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .cheat-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

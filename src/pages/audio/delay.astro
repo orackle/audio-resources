@@ -1,0 +1,239 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Delay Times Cheat Sheet";
+const description = "Musical delay times and techniques for perfect timing in your mixes.";
+---
+
+<CleanLayout {title} {description}>
+  <main class="cheatsheet-container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+
+    <div class="cheatsheet-header">
+      <h1>Delay Times</h1>
+      <div class="cheatsheet-meta">
+        <span class="version">v1.0</span>
+        <a href="#" class="edit-link">Edit this page</a>
+      </div>
+    </div>
+
+    <div class="cheatsheet-content">
+      <div class="cheatsheet-column">
+        <section class="cheatsheet-section">
+          <h2>Musical Delay Times (BPM: 120)</h2>
+          <div class="cheatsheet-table">
+            <div class="table-row header">
+              <div class="table-cell">Note</div>
+              <div class="table-cell">Time (ms)</div>
+              <div class="table-cell">Musical Feel</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">1/4 Note</div>
+              <div class="table-cell">500ms</div>
+              <div class="table-cell">Straight, on-beat</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">1/4 Dotted</div>
+              <div class="table-cell">750ms</div>
+              <div class="table-cell">Swing feel</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">1/8 Note</div>
+              <div class="table-cell">250ms</div>
+              <div class="table-cell">Double-time feel</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">1/8 Dotted</div>
+              <div class="table-cell">375ms</div>
+              <div class="table-cell">Shuffle feel</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">1/16 Note</div>
+              <div class="table-cell">125ms</div>
+              <div class="table-cell">Fast, busy</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cheatsheet-section">
+          <h2>Delay Types</h2>
+          <div class="cheatsheet-table">
+            <div class="table-row header">
+              <div class="table-cell">Type</div>
+              <div class="table-cell">Characteristics</div>
+              <div class="table-cell">Best For</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Tape</div>
+              <div class="table-cell">Warm, saturated, wobbly</div>
+              <div class="table-cell">Vocals, guitars, vintage vibe</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Digital</div>
+              <div class="table-cell">Clean, precise, transparent</div>
+              <div class="table-cell">Modern production, precise timing</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Analog</div>
+              <div class="table-cell">Warm, dark, degrading repeats</div>
+              <div class="table-cell">Synths, drums, lo-fi</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Ping-Pong</div>
+              <div class="table-cell">Stereo bouncing effect</div>
+              <div class="table-cell">Wide stereo imaging</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="cheatsheet-column">
+        <section class="cheatsheet-section">
+          <h2>Delay Parameters</h2>
+          <div class="cheatsheet-list">
+            <div class="instrument-card">
+              <h3>Feedback</h3>
+              <ul>
+                <li>Low (10-20%): Single repeat</li>
+                <li>Medium (30-50%): Multiple repeats</li>
+                <li>High (60%+): Infinite repeats/self-oscillation</li>
+              </ul>
+            </div>
+
+            <div class="instrument-card">
+              <h3>Mix/Blend</h3>
+              <ul>
+                <li>10-30%: Subtle thickening</li>
+                <li>30-50%: Noticeable effect</li>
+                <li>50%+: Dominant effect</li>
+              </ul>
+            </div>
+
+            <div class="instrument-card">
+              <h3>Filtering</h3>
+              <ul>
+                <li>High-pass: Clean up low-end mud</li>
+                <li>Low-pass: Darken repeats</li>
+                <li>Band-pass: Vintage/telephone effect</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="cheatsheet-section">
+          <h2>Creative Techniques</h2>
+          <div class="cheatsheet-tips">
+            <div class="tip">
+              <h4>Slapback Delay</h4>
+              <p>Short delay (80-150ms) with 1-2 repeats for 50s rockabilly or modern pop vocals.</p>
+            </div>
+            <div class="tip">
+              <h4>Dotted 8th Note</h4>
+              <p>Set to dotted 8th note timing for classic U2-style guitar delays.</p>
+            </div>
+            <div class="tip">
+              <h4>Automation</h4>
+              <p>Automate delay time for pitch-shifting effects or transitions.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="cheatsheet-section">
+          <h2>BPM to MS Converter</h2>
+          <div class="cheatsheet-tips">
+            <div class="tip">
+              <h4>Formula: 60,000 ÷ BPM = 1/4 note in ms</h4>
+              <p>Example: 60,000 ÷ 120 BPM = 500ms (1/4 note)</p>
+              <p class="tip-detail">For other note values: 1/8 = ÷2, 1/8T = ÷3, 1/16 = ÷4, etc.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    /* Reusing the same styles as previous cheatsheets */
+    :root {
+      --primary: #6B4E3B;
+      --primary-dark: #4A3A2B;
+      --accent: #9C6B3D;
+      --text: #3A2E25;
+      --text-light: #6B5A4A;
+      --border: #B8A58E;
+      --bg: #F0E6D8;
+      --code-bg: #E0D4C3;
+      --radius: 4px;
+      --shadow: 0 2px 6px rgba(44, 36, 28, 0.08);
+      --font-mono: 'Space Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace;
+    }
+
+    .cheatsheet-container { width: 100%; margin: 0; padding: 0.5em 9em; min-height: 100vh; position: relative; }
+    .back-link { margin-bottom: 3rem; margin-left: 0; margin-right: 0; }
+    .back-link a { color: var(--text-light); font-size: 0.9rem; text-decoration: none; transition: color 0.2s ease; }
+    .back-link a:hover { color: var(--accent); }
+    .cheatsheet-header { margin-bottom: 2.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .cheatsheet-header h1 { font-size: 2.2rem; font-weight: 700; color: var(--text); margin: 0 0 0.5rem 0; }
+    .cheatsheet-meta { display: flex; align-items: center; gap: 1rem; color: var(--text-light); font-size: 0.95rem; }
+    .version { background: var(--code-bg); padding: 0.2rem 0.5rem; border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.85em; }
+    .edit-link { color: var(--primary); text-decoration: none; }
+    .edit-link:hover { text-decoration: underline; }
+    .cheatsheet-content { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; width: 100%; padding: 2rem 1.5rem; max-width: 1800px; margin: 0 auto; }
+    .cheatsheet-section { margin-bottom: 3rem; }
+    .cheatsheet-section:last-child { margin-bottom: 0; }
+    .cheatsheet-section h2 { font-size: 1.5rem; font-weight: 600; margin: 0 0 1.5rem 0; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary); color: var(--text); display: inline-block; }
+    .cheatsheet-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-bottom: 2rem; background: var(--bg); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .table-row { display: flex; border-bottom: 1px solid var(--border); }
+    .table-row:last-child { border-bottom: none; }
+    .table-row.header { font-weight: 600; background: transparent; }
+    .table-cell { padding: 1.25rem 0 1.25rem 1.5rem; text-align: left; flex: 1; color: var(--text); font-size: 0.95rem; }
+    .table-cell:first-child { flex: 0 0 130px; font-family: 'Space Grotesk', monospace; color: var(--accent); font-weight: 500; font-size: 0.95rem; }
+    .cheatsheet-list { 
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .cheatsheet-list li { 
+      margin: 0 0 1.25rem 0;
+      padding: 0;
+      line-height: 1.7; 
+      color: var(--text); 
+      font-size: 0.95rem; 
+    }
+    .instrument-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    .instrument-card { background: var(--bg); border-radius: var(--radius); border: 1px solid var(--border); padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .instrument-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .instrument-card h3 { margin: 0 0 1rem 0; color: var(--primary); font-size: 1.2rem; }
+    .instrument-card ul { margin: 0; padding: 0 0 0 1.2rem; }
+    .instrument-card li { margin-bottom: 0.5rem; line-height: 1.5; }
+    .instrument-card li:last-child { margin-bottom: 0; }
+    .cheatsheet-tips { display: grid; gap: 1.5rem; }
+    .tip { background: var(--bg); border-radius: var(--radius); padding: 1.5rem; border: 1px solid var(--border); }
+    .tip h4 { margin: 0 0 0.75rem 0; color: var(--primary); font-size: 1.1rem; }
+    .tip p { margin: 0 0 0.5rem 0; color: var(--text); line-height: 1.6; }
+    .tip-detail { font-size: 0.9em; color: var(--text-light); font-style: italic; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--border); }
+
+    @media (max-width: 1200px) {
+      .cheatsheet-content { grid-template-columns: 1fr; padding: 1rem 0.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      .cheatsheet-container { padding: 0.5em 1em; }
+      .table-row { flex-direction: column; padding: 1rem; }
+      .table-cell { padding: 0.5rem 0; }
+      .table-cell:first-child { flex: 1; font-weight: 600; padding-bottom: 0.25rem; }
+      .cheatsheet-section h2 { font-size: 1.3rem; }
+      .cheatsheet-header h1 { font-size: 1.8rem; }
+    }
+
+    @media (max-width: 480px) {
+      .cheatsheet-header h1 { font-size: 1.6rem; }
+      .cheatsheet-meta { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .table-cell:first-child { flex: 0 0 100px; }
+    }
+  </style>
+</CleanLayout>

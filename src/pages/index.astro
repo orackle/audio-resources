@@ -1,47 +1,475 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Card from "../content/cards/components/Card.astro";
-import { getCollection } from 'astro:content';
+import CleanLayout from "../layouts/CleanLayout.astro";
 
-// for MVP, just show latest or hand-picked popular cards
-const all = await getCollection('cards');
-const featured = all.slice(0, 8); // TODO: replace with popularity later
+const title = "Audio Cheat Sheets";
+const description = "Quick references for audio engineers & musicians";
 ---
 
-<BaseLayout title="Audio Devhints — Clean, fast resources.">
-  {/* Hero: search box + scope chips */}
-  <section class="search-hero" style="margin-bottom: var(--space-6);">
-    <div class="search-container">
-      <h1 style="font-size: var(--fs-h1); text-align: center; margin: 0 0 var(--space-3) 0;">Find it fast.</h1>
+<CleanLayout {title} {description}>
+  <main class="container">
+    <header class="page-header">
+      <h1>Audio Cheat Sheets</h1>
+      <p class="page-description">Essential references for audio production and music theory</p>
+    </header>
+
+    <div class="cheat-grid">
+      <section class="cheat-category">
+        <h2>Audio Processing</h2>
+        <ul class="cheat-list">
+          <li>
+            <a href="/audio/eq" class="cheat-link">
+              <span class="cheat-title">EQ Cheat Sheet</span>
+              <span class="cheat-desc">Frequency ranges and EQ tips</span>
+            </a>
+          </li>
+          <li>
+            <a href="/audio/compression" class="cheat-link">
+              <span class="cheat-title">Compression Guide</span>
+              <span class="cheat-desc">Techniques for dynamic control</span>
+            </a>
+          </li>
+          <li>
+            <a href="/audio/reverb" class="cheat-link">
+              <span class="cheat-title">Reverb Settings</span>
+              <span class="cheat-desc">Optimal times by genre</span>
+            </a>
+          </li>
+          <li>
+            <a href="/audio/delay" class="cheat-link">
+              <span class="cheat-title">Delay Times</span>
+              <span class="cheat-desc">Musical timing references</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cheat-category">
+        <h2>Music Theory</h2>
+        <ul class="cheat-list">
+          <li>
+            <a href="/music-theory/scales" class="cheat-link">
+              <span class="cheat-title">Scales Reference</span>
+              <span class="cheat-desc">Major, minor, and modal patterns</span>
+            </a>
+          </li>
+          <li>
+            <a href="/music-theory/chord-progressions" class="cheat-link">
+              <span class="cheat-title">Chord Progressions</span>
+              <span class="cheat-desc">Common progressions in all keys</span>
+            </a>
+          </li>
+          <li>
+            <a href="/music-theory/keys" class="cheat-link">
+              <span class="cheat-title">Key Signatures</span>
+              <span class="cheat-desc">Circle of fifths reference</span>
+            </a>
+          </li>
+          <li>
+            <a href="/music-theory/modes" class="cheat-link">
+              <span class="cheat-title">Modes</span>
+              <span class="cheat-desc">Understanding modal theory</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cheat-category">
+        <h2>DAW Shortcuts</h2>
+        <ul class="cheat-list">
+          <li>
+            <a href="/daw/shortcuts/ableton" class="cheat-link">
+              <span class="cheat-title">Ableton Live</span>
+              <span class="cheat-desc">Essential keyboard shortcuts</span>
+            </a>
+          </li>
+          <li>
+            <a href="/daw/shortcuts/logic" class="cheat-link">
+              <span class="cheat-title">Logic Pro</span>
+              <span class="cheat-desc">Workflow accelerators</span>
+            </a>
+          </li>
+          <li>
+            <a href="/daw/shortcuts/pro-tools" class="cheat-link">
+              <span class="cheat-title">Pro Tools</span>
+              <span class="cheat-desc">Professional workflow tips</span>
+            </a>
+          </li>
+          <li>
+            <a href="/daw/shortcuts/fl-studio" class="cheat-link">
+              <span class="cheat-title">FL Studio</span>
+              <span class="cheat-desc">Beat making shortcuts</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cheat-category">
+        <h2>Audio Plugins</h2>
+        <ul class="cheat-list">
+          <li>
+            <a href="/plugins/compression" class="cheat-link">
+              <span class="cheat-title">Compression</span>
+              <span class="cheat-desc">Best settings by instrument</span>
+            </a>
+          </li>
+          <li>
+            <a href="/plugins/eq" class="cheat-link">
+              <span class="cheat-title">EQ Matching</span>
+              <span class="cheat-desc">Professional EQ curves</span>
+            </a>
+          </li>
+          <li>
+            <a href="/plugins/reverb" class="cheat-link">
+              <span class="cheat-title">Reverb Types</span>
+              <span class="cheat-desc">When to use each reverb</span>
+            </a>
+          </li>
+          <li>
+            <a href="/plugins/saturation" class="cheat-link">
+              <span class="cheat-title">Saturation</span>
+              <span class="cheat-desc">Warmth and harmonics guide</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cheat-category">
+        <h2>Recording</h2>
+        <ul class="cheat-list">
+          <li>
+            <a href="/recording/vocals" class="cheat-link">
+              <span class="cheat-title">Vocal Recording</span>
+              <span class="cheat-desc">Mic placement and techniques</span>
+            </a>
+          </li>
+          <li>
+            <a href="/recording/guitar" class="cheat-link">
+              <span class="cheat-title">Guitar Miking</span>
+              <span class="cheat-desc">Cabinet and amp techniques</span>
+            </a>
+          </li>
+          <li>
+            <a href="/recording/drums" class="cheat-link">
+              <span class="cheat-title">Drum Miking</span>
+              <span class="cheat-desc">Kit setup and mic placement</span>
+            </a>
+          </li>
+          <li>
+            <a href="/recording/acoustic" class="cheat-link">
+              <span class="cheat-title">Acoustic Instruments</span>
+              <span class="cheat-desc">Miking strings, piano, and more</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cheat-category">
+        <h2>Mixing & Mastering</h2>
+        <ul class="cheat-list">
+          <li>
+            <a href="/mixing/loudness" class="cheat-link">
+              <span class="cheat-title">Loudness Standards</span>
+              <span class="cheat-desc">LUFS targets by platform</span>
+            </a>
+          </li>
+          <li>
+            <a href="/mixing/spectrum" class="cheat-link">
+              <span class="cheat-title">Frequency Spectrum</span>
+              <span class="cheat-desc">Instrument frequency ranges</span>
+            </a>
+          </li>
+          <li>
+            <a href="/mixing/dynamics" class="cheat-link">
+              <span class="cheat-title">Dynamic Processing</span>
+              <span class="cheat-desc">Compression and limiting guide</span>
+            </a>
+          </li>
+          <li>
+            <a href="/mixing/imaging" class="cheat-link">
+              <span class="cheat-title">Stereo Imaging</span>
+              <span class="cheat-desc">Width and depth techniques</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cheat-category">
+        <h2>Sound Design</h2>
+        <ul class="cheat-list">
+          <li>
+            <a href="/sound-design/synthesis" class="cheat-link">
+              <span class="cheat-title">Synthesis Types</span>
+              <span class="cheat-desc">Subtractive, FM, wavetable, etc.</span>
+            </a>
+          </li>
+          <li>
+            <a href="/sound-design/sound-effects" class="cheat-link">
+              <span class="cheat-title">SFX Creation</span>
+              <span class="cheat-desc">Designing impactful effects</span>
+            </a>
+          </li>
+          <li>
+            <a href="/sound-design/sampling" class="cheat-link">
+              <span class="cheat-title">Sampling Techniques</span>
+              <span class="cheat-desc">Chopping, warping, and layering</span>
+            </a>
+          </li>
+          <li>
+            <a href="/sound-design/midi" class="cheat-link">
+              <span class="cheat-title">MIDI Programming</span>
+              <span class="cheat-desc">Humanization and expression</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cheat-category">
+        <h2>Live Sound</h2>
+        <ul class="cheat-list">
+          <li>
+            <a href="/live/foh" class="cheat-link">
+              <span class="cheat-title">Front of House</span>
+              <span class="cheat-desc">Mixing for live venues</span>
+            </a>
+          </li>
+          <li>
+            <a href="/live/monitors" class="cheat-link">
+              <span class="cheat-title">Monitor Mixing</span>
+              <span class="cheat-desc">Creating optimal stage sound</span>
+            </a>
+          </li>
+          <li>
+            <a href="/live/system-tuning" class="cheat-link">
+              <span class="cheat-title">System Tuning</span>
+              <span class="cheat-desc">PA optimization techniques</span>
+            </a>
+          </li>
+          <li>
+            <a href="/live/diagrams" class="cheat-link">
+              <span class="cheat-title">Stage Plots</span>
+              <span class="cheat-desc">Professional stage setup guides</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cheat-category">
+        <h2>Music Business</h2>
+        <ul class="cheat-list">
+          <li>
+            <a href="/business/royalties" class="cheat-link">
+              <span class="cheat-title">Royalty Streams</span>
+              <span class="cheat-desc">Understanding music income</span>
+            </a>
+          </li>
+          <li>
+            <a href="/business/copyright" class="cheat-link">
+              <span class="cheat-title">Copyright Basics</span>
+              <span class="cheat-desc">Protecting your music</span>
+            </a>
+          </li>
+          <li>
+            <a href="/business/marketing" class="cheat-link">
+              <span class="cheat-title">Music Marketing</span>
+              <span class="cheat-desc">Promotion strategies</span>
+            </a>
+          </li>
+          <li>
+            <a href="/business/contracts" class="cheat-link">
+              <span class="cheat-title">Contract Templates</span>
+              <span class="cheat-desc">Essential legal documents</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <style>
+    /* Animation keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Page load animation */
+    .page-header {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .cheat-category {
+      opacity: 0;
+      animation: slideUp 0.6s ease-out forwards;
+    }
+    
+    /* Stagger animations for cheat categories */
+    .cheat-category {
+      animation-delay: calc(0.1s * var(--i));
+    }
+    
+    /* Responsive grid adjustments */
+    @media (min-width: 1024px) {
+      .cheat-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+    }
+    
+    /* Hover effects for cheat links */
+    .cheat-link {
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      display: block;
+      padding: 0.5rem 0;
+    }
+    
+    .cheat-link:hover {
+      transform: translateX(8px);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      position: relative;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .page-description {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .cheat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .cheat-category h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .cheat-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .cheat-link {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      border-radius: 6px;
+    }
+
+    .cheat-link:hover {
+      color: var(--accent);
+      transform: translateX(6px);
+    }
+
+    .cheat-title {
+      flex: 1;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+      padding-right: 1rem;
+    }
+
+    .cheat-title::after {
+      content: '→';
+      position: absolute;
+      right: 0;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all 0.3s ease;
+    }
+
+    .cheat-link:hover .cheat-title::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .cheat-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      opacity: 0;
+      max-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      transition: all 0.3s ease 0.1s;
+      margin-left: 1.5rem;
+    }
+
+    .cheat-link:hover .cheat-desc {
+      opacity: 1;
+      max-width: 300px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 2.5rem 1.5rem;
+      }
       
-      <form action="/search" role="search" aria-label="Site search" class="search-form">
-        <input
-          name="q"
-          placeholder="Search EQ, compression, progressions, Ableton…"
-          class="search-input"
-        />
-      </form>
-
-      {/* scope chips — these prefill query later */}
-      <div class="search-chips">
-        <a class="chip" href="/audio">EQ</a>
-        <a class="chip" href="/audio">Compression</a>
-        <a class="chip" href="/audio">Reverb</a>
-        <a class="chip" href="/theory">Scales</a>
-        <a class="chip" href="/theory">Progressions</a>
-        <a class="chip" href="/daws">Ableton</a>
-        <a class="chip" href="/daws">Logic</a>
-      </div>
-    </div>
-  </section>
-
-  {/* Featured cards */}
-  <section class="quickref">
-    <h2 style="font-size: var(--fs-h2); margin: 0 0 var(--space-3) 0;">Featured</h2>
-    <div class="quickref-grid">
-      {featured.map((entry) => (
-        <Card {entry} />
-      ))}
-    </div>
-  </section>
+      .cheat-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .page-header {
+        margin-bottom: 3rem;
+      }
+      
+      .page-header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .page-description {
+        font-size: 1rem;
+      }
+      
+      .cheat-category h2 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .cheat-link {
+        padding: 0.6rem 0.8rem;
+      }
+    }
+  </style>
 </BaseLayout>

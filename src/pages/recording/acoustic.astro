@@ -1,0 +1,191 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Acoustic Instruments Recording Guide";
+const description = "Essential techniques and tips for recording various acoustic instruments";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Acoustic Instruments Recording Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Acoustic Guitar</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Microphone Selection</h3>
+          <ul>
+            <li>Small diaphragm condenser - Neumann KM184</li>
+            <li>Large diaphragm condenser - AKG C414</li>
+            <li>Ribbon mic - Royer R-121 (for darker tones)</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Stereo Techniques</h3>
+          <ul>
+            <li>XY: 90° angle, 6-12" from 12th-14th fret</li>
+            <li>Spaced pair: 12-18" apart, pointing at bridge and neck</li>
+            <li>Mid-side: For adjustable stereo width</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Piano</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Grand Piano</h3>
+          <ul>
+            <li>Spaced pair: 6-12" from hammers, 8-12" apart</li>
+            <li>ORTF: At the curve, 4-6' back</li>
+            <li>Add room mics for natural ambience</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Upright Piano</h3>
+          <ul>
+            <li>Remove front panel</li>
+            <li>Place mics 6-12" from soundboard</li>
+            <li>Try inside/outside combinations</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Strings</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Violin/Viola</h3>
+          <ul>
+            <li>Small diaphragm condenser - 1-2' away</li>
+            <li>Point at f-holes or slightly above</li>
+            <li>Add room mic for natural reverb</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Cello</h3>
+          <ul>
+            <li>Small or large diaphragm condenser</li>
+            <li>2-3' from bridge/f-hole area</li>
+            <li>Experiment with height (3-5' high)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Brass & Woodwinds</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Saxophone</h3>
+          <ul>
+            <li>Condenser mic 1-2' from bell</li>
+            <li>Point at middle of instrument</li>
+            <li>Add room mic for jazz recordings</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Trumpet/Trombone</h3>
+          <ul>
+            <li>Ribbon or dynamic mic 1-3' from bell</li>
+            <li>Angle slightly off-axis</li>
+            <li>Use pop filter for plosives</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-section h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 1.2rem;
+  }
+
+  .cheat-item ul {
+    padding-left: 1.2rem;
+    margin: 0.75rem 0 0 0;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

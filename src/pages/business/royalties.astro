@@ -1,0 +1,163 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Music Royalties Guide";
+const description = "Understanding and collecting music royalties";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Music Royalties Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Royalty Types</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Mechanical Royalties</h3>
+          <ul>
+            <li>Paid for physical/digital sales</li>
+            <li>~9.1¢ per song (US rate)</li>
+            <li>Collected by: HFA, MLC, CMRRA</li>
+            <li>Paid to: Songwriters, Publishers</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Performance Royalties</h3>
+          <ul>
+            <li>Paid for public performances</li>
+            <li>Radio, TV, live, streaming</li>
+            <li>Collected by: ASCAP, BMI, SESAC, SOCAN</li>
+            <li>Paid to: Songwriters, Publishers</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Sync Licensing</h3>
+          <ul>
+            <li>Paid for music in visual media</li>
+            <li>Negotiated per project</li>
+            <li>Can include upfront fees + backend</li>
+            <li>Paid to: Rights holders</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Collection & Registration</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Register Your Works</h3>
+          <ul>
+            <li>Sign up with a PRO (ASCAP/BMI/SESAC)</li>
+            <li>Register with SoundExchange</li>
+            <li>Submit to Mechanical Licensing Collective</li>
+            <li>Keep detailed records</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Digital Distribution</h3>
+          <ul>
+            <li>Use a digital distributor</li>
+            <li>Register with Content ID systems</li>
+            <li>Claim your YouTube revenue</li>
+            <li>Track your streams</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Maximizing Royalties</h3>
+          <ul>
+            <li>Register all co-writers</li>
+            <li>Update your metadata</li>
+            <li>File for foreign royalties</li>
+            <li>Audit your statements</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .cheat-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

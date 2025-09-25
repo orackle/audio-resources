@@ -1,0 +1,178 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Guitar Recording Guide";
+const description = "Essential techniques and tips for recording professional guitar tracks";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Guitar Recording Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Miking Electric Guitar Amps</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Dynamic Mics</h3>
+          <p>Great for capturing punch and midrange</p>
+          <ul>
+            <li>Shure SM57 - Industry standard</li>
+            <li>Sennheiser MD 421 - Fuller low end</li>
+            <li>Beyerdynamic M 160 - Bright, detailed</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Ribbon Mics</h3>
+          <p>Smooth high-end and natural tone</p>
+          <ul>
+            <li>Royer R-121 - Warm, vintage tone</li>
+            <li>Beyerdynamic M 160 - Bright, detailed</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Mic Placement</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>On-Axis (0° to 30° off center)</h3>
+          <ul>
+            <li>Brightest tone</li>
+            <li>Most presence</li>
+            <li>Best for clean tones</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Off-Axis (45° to 90° off center)</h3>
+          <ul>
+            <li>Smoother high end</li>
+            <li>Less harshness</li>
+            <li>Better for high gain</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Distance from Grill</h3>
+          <ul>
+            <li>0-2" - Most aggressive</li>
+            <li>2-6" - Balanced tone</li>
+            <li>6"+ - More room sound</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Direct Recording</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>DI Box Options</h3>
+          <ul>
+            <li>Radial JDI - Passive, transformer-based</li>
+            <li>Countryman Type 85 - Active, ultra-clean</li>
+            <li>BSS AR-133 - Active, high headroom</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Amp Simulators</h3>
+          <ul>
+            <li>Neural DSP - High-end amp modeling</li>
+            <li>AmpliTube - Versatile amp collection</li>
+            <li>Guitar Rig - Creative effects</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-section h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 1.2rem;
+  }
+
+  .cheat-item ul {
+    padding-left: 1.2rem;
+    margin: 0.75rem 0 0 0;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

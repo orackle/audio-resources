@@ -1,0 +1,217 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Frequency Spectrum Guide";
+const description = "Understanding and working with frequency ranges in mixing";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Frequency Spectrum Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Frequency Ranges</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Sub-Bass (20-60Hz)</h3>
+          <ul>
+            <li>Rumble, power, and weight</li>
+            <li>Key for kick and bass</li>
+            <li>Cut below 30Hz to save headroom</li>
+            <li>Use high-pass filters on non-bass elements</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Bass (60-250Hz)</h3>
+          <ul>
+            <li>Fundamental frequencies of most instruments</li>
+            <li>Boominess at 200-250Hz</li>
+            <li>Boost carefully to add warmth</li>
+            <li>Cut muddiness around 200-300Hz</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Low Mids (250-500Hz)</h3>
+          <ul>
+            <li>Body and warmth</li>
+            <li>Mud zone - cut carefully</li>
+            <li>Important for vocals and guitars</li>
+            <li>Reducing here can add clarity</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Mids (500Hz-2kHz)</h3>
+          <ul>
+            <li>Presence and attack</li>
+            <li>1-2kHz adds punch to drums</li>
+            <li>500-800Hz can sound boxy</li>
+            <li>1-3kHz adds vocal presence</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Upper Mids (2kHz-5kHz)</h3>
+          <ul>
+            <li>Clarity and definition</li>
+            <li>3-5kHz adds presence</li>
+            <li>2-3kHz can be harsh on vocals</li>
+            <li>Key for vocal intelligibility</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Presence (5kHz-8kHz)</h3>
+          <ul>
+            <li>Detail and articulation</li>
+            <li>5-7kHz adds sizzle to cymbals</li>
+            <li>Can cause listening fatigue</li>
+            <li>Use broad boosts/cuts</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Air (8kHz-20kHz)</h3>
+          <ul>
+            <li>Openness and space</li>
+            <li>10kHz+ adds sparkle</li>
+            <li>Use high-shelf EQ</li>
+            <li>Be careful with digital distortion</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Instrument-Specific Frequencies</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Kick Drum</h3>
+          <ul>
+            <li>50-60Hz: Bottom end</li>
+            <li>80-100Hz: Knock/beater</li>
+            <li>200-400Hz: Boxiness</li>
+            <li>2-5kHz: Click/attack</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Snare Drum</h3>
+          <ul>
+            <li>150-250Hz: Body</li>
+            <li>600-800Hz: Boxiness</li>
+            <li>3-5kHz: Attack</li>
+            <li>8-10kHz: Snap</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Vocals</h3>
+          <ul>
+            <li>100-200Hz: Fullness</li>
+            <li>300-500Hz: Honk</li>
+            <li>2-5kHz: Presence</li>
+            <li>10kHz+: Air</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Electric Guitar</h3>
+          <ul>
+            <li>80-120Hz: Fullness</li>
+            <li>400-600Hz: Mud</li>
+            <li>2-4kHz: Crunch</li>
+            <li>5-8kHz: Presence</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-section h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cheat-item ul {
+    padding-left: 1.2rem;
+    margin: 0.75rem 0 0 0;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

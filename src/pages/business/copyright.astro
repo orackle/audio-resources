@@ -1,0 +1,163 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Music Copyright Guide";
+const description = "Understanding and protecting your musical works";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Music Copyright Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Copyright Basics</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>What's Protected</h3>
+          <ul>
+            <li>Musical compositions</li>
+            <li>Sound recordings</li>
+            <li>Lyrics and sheet music</li>
+            <li>Album artwork</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Copyright Duration</h3>
+          <ul>
+            <li>Life + 70 years (individual)</li>
+            <li>95-120 years (works for hire)</li>
+            <li>Varies by country</li>
+            <li>Public domain rules</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Rights Granted</h3>
+          <ul>
+            <li>Reproduction</li>
+            <li>Distribution</li>
+            <li>Public Performance</li>
+            <li>Derivative Works</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Registration & Protection</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>How to Register</h3>
+          <ul>
+            <li>U.S. Copyright Office</li>
+            <li>Online submission</li>
+            <li>Single vs. group registration</li>
+            <li>Required materials</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Copyright Notices</h3>
+          <ul>
+            <li>© [Year] [Owner]</li>
+            <li>Sound Recording: ℗</li>
+            <li>Not required but recommended</li>
+            <li>Placement guidelines</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Enforcement</h3>
+          <ul>
+            <li>DMCA takedowns</li>
+            <li>Cease and desist</li>
+            <li>Legal action</li>
+            <li>Statutory damages</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .cheat-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

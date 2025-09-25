@@ -1,0 +1,66 @@
+---
+import CheatSheet from '../../templates/cheat-sheet.astro';
+
+const title = 'EQ Cheat Sheet';
+const description = 'Frequency ranges and EQ tips for different instruments';
+
+const sections = [
+  {
+    title: 'Vocal Frequencies',
+    items: [
+      {
+        title: 'Body (100-250Hz)',
+        content: 'Adds warmth and fullness. Be careful not to overdo it to avoid muddiness.'
+      },
+      {
+        title: 'Presence (2.5-5kHz)',
+        content: 'Adds clarity and intelligibility to vocals. Essential for cutting through the mix.'
+      },
+      {
+        title: 'Air (10kHz+)',
+        content: 'Adds sparkle and breath. Use a high-shelf for subtle enhancement.'
+      }
+    ]
+  },
+  {
+    title: 'Instruments',
+    items: [
+      {
+        title: 'Kick Drum (50-100Hz)',
+        content: 'Sub-bass for weight, 2-5kHz for beater attack.'
+      },
+      {
+        title: 'Snare (150-250Hz)',
+        content: 'Body and fullness. 1-3kHz for snap and attack.'
+      },
+      {
+        title: 'Electric Guitar (80-1.2kHz)',
+        content: 'Fundamental frequencies. Cut around 300-500Hz to reduce mud.'
+      },
+      {
+        title: 'Bass Guitar (40-250Hz)',
+        content: 'Fundamental notes. 700-1kHz for finger/pick attack.'
+      }
+    ]
+  },
+  {
+    title: 'Common Problem Frequencies',
+    items: [
+      {
+        title: 'Mud (200-500Hz)',
+        content: 'Often needs cutting in multiple instruments to clean up the mix.'
+      },
+      {
+        title: 'Boxiness (300-600Hz)',
+        content: 'Can make mixes sound closed-in. Tame in guitars and vocals.'
+      },
+      {
+        title: 'Harshness (2-5kHz)',
+        content: 'Can cause listening fatigue. Tame in cymbals, distorted guitars, and sibilant vocals.'
+      }
+    ]
+  }
+];
+---
+
+<CheatSheet {title} {description} {sections} />

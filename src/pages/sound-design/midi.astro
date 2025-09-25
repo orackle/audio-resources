@@ -1,0 +1,163 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "MIDI Programming Guide";
+const description = "Techniques for realistic and expressive MIDI programming";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>MIDI Programming Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Humanization</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Timing</h3>
+          <ul>
+            <li>±5-20ms for natural feel</li>
+            <li>More swing for certain genres</li>
+            <li>Vary by instrument type</li>
+            <li>Use groove templates</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Velocity</h3>
+          <ul>
+            <li>Vary velocities (70-110 typical)</li>
+            <li>Accent key beats</li>
+            <li>Map velocity to sample layers</li>
+            <li>Use velocity curves</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Articulations</h3>
+          <ul>
+            <li>Use key switches</li>
+            <li>Map to velocity layers</li>
+            <li>Crossfade between articulations</li>
+            <li>Use expression controllers</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Advanced Techniques</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>CC Automation</h3>
+          <ul>
+            <li>CC1 (Mod Wheel)</li>
+            <li>CC11 (Expression)</li>
+            <li>CC7 (Volume)</li>
+            <li>CC64 (Sustain)</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>MIDI Effects</h3>
+          <ul>
+            <li>Arpeggiators</li>
+            <li>Chord triggers</li>
+            <li>Note repeat</li>
+            <li>MIDI transform</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Workflow Tips</h3>
+          <ul>
+            <li>Use templates</li>
+            <li>Organize by articulation</li>
+            <li>Name your tracks</li>
+            <li>Color code parts</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .cheat-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

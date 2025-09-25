@@ -1,0 +1,157 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Sampling Guide";
+const description = "Techniques and best practices for working with audio samples";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Sampling Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Sampling Techniques</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Basic Sampling</h3>
+          <ul>
+            <li>Sample rate: 44.1kHz (CD quality)</li>
+            <li>Bit depth: 24-bit for recording, 16-bit for distribution</li>
+            <li>Always record in mono for single sources</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Chopping</h3>
+          <ul>
+            <li>Cut at zero-crossings</li>
+            <li>Use transient detection</li>
+            <li>Create rhythm with chops</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Time-Stretching</h3>
+          <ul>
+            <li>Preserve formants for natural sound</li>
+            <li>Different algorithms for different material</li>
+            <li>Use elastic audio for subtle timing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Creative Sampling</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Resampling</h3>
+          <ul>
+            <li>Bounce and reprocess</li>
+            <li>Create new textures</li>
+            <li>Build complex sounds</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Granular Synthesis</h3>
+          <ul>
+            <li>Small grain sizes (1-100ms)</li>
+            <li>Experiment with grain envelopes</li>
+            <li>Create evolving textures</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Layering</h3>
+          <ul>
+            <li>Combine acoustic and synthetic</li>
+            <li>Layer for impact</li>
+            <li>Process layers differently</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .cheat-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

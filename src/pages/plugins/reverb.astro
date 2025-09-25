@@ -1,0 +1,74 @@
+---
+import CheatSheet from '../../templates/cheat-sheet.astro';
+
+const title = 'Reverb Cheat Sheet';
+const description = 'When and how to use different types of reverb';
+
+const sections = [
+  {
+    title: 'Reverb Types',
+    items: [
+      {
+        title: 'Hall',
+        content: 'Natural, spacious sound. Great for orchestral and acoustic music.'
+      },
+      {
+        title: 'Plate',
+        content: 'Smooth, dense reverb. Perfect for vocals and snare drums.'
+      },
+      {
+        title: 'Room',
+        content: 'Intimate, natural sound. Good for making elements sit together in a mix.'
+      },
+      {
+        title: 'Spring',
+        content: 'Vintage, bouncy sound. Classic for guitar and retro productions.'
+      }
+    ]
+  },
+  {
+    title: 'Reverb Times by Tempo',
+    items: [
+      {
+        title: '60-80 BPM',
+        content: '3.0-4.0s for long, lush tails'
+      },
+      {
+        title: '80-100 BPM',
+        content: '2.0-3.0s for balanced reverb'
+      },
+      {
+        title: '100-120 BPM',
+        content: '1.5-2.0s for subtle space'
+      },
+      {
+        title: '120+ BPM',
+        content: '0.8-1.5s to avoid muddiness'
+      }
+    ]
+  },
+  {
+    title: 'Reverb Tips',
+    items: [
+      {
+        title: 'High-Pass Filtering',
+        content: 'Apply HPF to reverb return to prevent low-end mud.'
+      },
+      {
+        title: 'Pre-Delay',
+        content: '20-80ms helps maintain clarity in the dry signal.'
+      },
+      {
+        title: 'EQ After Reverb',
+        content: 'Cut harsh frequencies (3-6kHz) for smoother tails.'
+      },
+      {
+        title: 'Layering',
+        content: 'Combine short room with longer plate for depth.'
+      }
+    ]
+  }
+];
+---
+
+<CheatSheet {title} {description} {sections} />

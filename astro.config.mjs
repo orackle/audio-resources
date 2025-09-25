@@ -7,5 +7,21 @@ import mdx from '@astrojs/mdx';
 // https://astro.build/config
 export default defineConfig({
   integrations: [mdx()],
-  adapter: cloudflare()
+  adapter: cloudflare(),
+  server: {
+    host: true
+  },
+  vite: {
+    server: {
+      host: true,
+      allowedHosts: [
+        'wrinkleable-cristobal-septavalent.ngrok-free.dev',
+        'localhost'
+      ],
+      hmr: {
+        clientPort: 443,
+        protocol: 'wss'
+      }
+    }
+  }
 });

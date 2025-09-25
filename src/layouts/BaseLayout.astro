@@ -3,6 +3,8 @@
 // - sets html lang, meta, and links global styles
 // - renders a simple header with top-level nav
 // - provides a "skip to content" link for a11y
+import '../styles/global.css';
+
 const { title = 'The Cue Sheet', description = 'Clean, fast cheat sheets for audio engineers & musicians.' } = Astro.props;
 ---
 
@@ -102,8 +104,7 @@ const { title = 'The Cue Sheet', description = 'Clean, fast cheat sheets for aud
       }
     </style>
 
-    {/* global styles - global.css imports all other CSS files */}
-    <link rel="stylesheet" href="/src/styles/global.css" />
+    {/* global styles - imported in the frontmatter */}
 
   </head>
   <script>

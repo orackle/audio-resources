@@ -1,0 +1,163 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Front of House Mixing";
+const description = "Techniques for professional front of house mixing";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Front of House Mixing</h1>
+    
+    <section class="cheat-section">
+      <h2>Mixing Techniques</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Balance</h3>
+          <ul>
+            <li>Start with rhythm section</li>
+            <li>Build the mix from the bottom up</li>
+            <li>Keep vocals clear and present</li>
+            <li>Use faders, not just EQ</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>EQ Tips</h3>
+          <ul>
+            <li>High-pass non-bass instruments</li>
+            <li>Carve space for each element</li>
+            <li>Be subtle with boosts</li>
+            <li>Cut problem frequencies</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Dynamics</h3>
+          <ul>
+            <li>Use compression carefully</li>
+            <li>Don't over-compress</li>
+            <li>Use automation when possible</li>
+            <li>Leave headroom</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Effects & Processing</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Reverb</h3>
+          <ul>
+            <li>Use different types by source</li>
+            <li>Shorter decay for faster songs</li>
+            <li>Pre-delay for clarity</li>
+            <li>Less is often more</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Delay</h3>
+          <ul>
+            <li>Sync to tempo</li>
+            <li>Use for depth</li>
+            <li>Duck delays on vocals</li>
+            <li>Try ping-pong for width</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Multiband Processing</h3>
+          <ul>
+            <li>Use on main mix carefully</li>
+            <li>Wide Q for gentle shaping</li>
+            <li>Reference often</li>
+            <li>Bypass to check</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .cheat-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

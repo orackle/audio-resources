@@ -1,0 +1,75 @@
+---
+// Template for cheat sheet pages
+const { title, description, sections } = Astro.props;
+---
+
+<CleanLayout {title} {description}>
+  <main class="cheat-sheet">
+    <h1>{title}</h1>
+    
+    {sections.map(section => (
+      <section class="cheat-section">
+        <h2>{section.title}</h2>
+        <div class="content-grid">
+          {section.items.map(item => (
+            <div class="cheat-item">
+              <h3>{item.title}</h3>
+              <div class="cheat-content">
+                {item.content}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+  </main>
+</CleanLayout>
+
+<style>
+  .cheat-sheet {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    color: var(--accent);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .cheat-content {
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

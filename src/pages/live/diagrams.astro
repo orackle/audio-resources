@@ -1,0 +1,163 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Stage Plots & Diagrams";
+const description = "Creating professional stage plots and technical riders";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Stage Plots & Diagrams</h1>
+    
+    <section class="cheat-section">
+      <h2>Essential Elements</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Stage Plot</h3>
+          <ul>
+            <li>Stage dimensions</li>
+            <li>Input list</li>
+            <li>Monitor needs</li>
+            <li>Power requirements</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Input List</h3>
+          <ul>
+            <li>Channel number</li>
+            <li>Source</li>
+            <li>Mic/DI type</li>
+            <li>Special requirements</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Stage Plot Design</h3>
+          <ul>
+            <li>Use vector graphics</li>
+            <li>Label everything</li>
+            <li>Include scale</li>
+            <li>Keep it simple</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Best Practices</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>File Formats</h3>
+          <ul>
+            <li>PDF (printable)</li>
+            <li>PNG (digital)</li>
+            <li>Vector (editable)</li>
+            <li>Include contact info</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Technical Rider</h3>
+          <ul>
+            <li>Backline requirements</li>
+            <li>Power needs</li>
+            <li>Stage plot</li>
+            <li>Input list</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Tools</h3>
+          <ul>
+            <li>StagePlot.com</li>
+            <li>OmniGraffle</li>
+            <li>Lucidchart</li>
+            <li>Draw.io</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .cheat-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

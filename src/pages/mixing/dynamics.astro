@@ -1,0 +1,229 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+
+const title = "Dynamic Processing Guide";
+const description = "Compression, limiting, and dynamic control in mixing and mastering";
+---
+
+<CleanLayout {title} {description}>
+  <div class="container">
+    <div class="back-link">
+      <a href="/">← Back to all cheats</a>
+    </div>
+    
+    <h1>Dynamic Processing Guide</h1>
+    
+    <section class="cheat-section">
+      <h2>Compression Fundamentals</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Threshold & Ratio</h3>
+          <ul>
+            <li><strong>Threshold:</strong> Level at which compression begins</li>
+            <li><strong>2:1:</strong> Light compression (vocal leveling)</li>
+            <li><strong>4:1:</strong> Medium compression (drums, bass)</li>
+            <li><strong>8:1+:</strong> Heavy compression (parallel compression)</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Attack & Release</h3>
+          <ul>
+            <li><strong>Fast attack</strong> tames transients</li>
+            <li><strong>Slow attack</strong> preserves punch</li>
+            <li>Auto release for natural sound</li>
+            <li>Match release to tempo when possible</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Knee</h3>
+          <ul>
+            <li><strong>Hard knee:</strong> Abrupt compression</li>
+            <li><strong>Soft knee:</strong> Gradual compression</li>
+            <li>Use soft knee for transparent leveling</li>
+            <li>Hard knee for aggressive control</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Advanced Compression Techniques</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Parallel Compression</h3>
+          <ul>
+            <li>Blend compressed and dry signals</li>
+            <li>Use high ratios (4:1 to 8:1)</li>
+            <li>Fast attack, fast release</li>
+            <li>Ideal for drums and vocals</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Multiband Compression</h3>
+          <ul>
+            <li>Compress specific frequency ranges</li>
+            <li>Great for controlling bass</li>
+            <li>Use on mix bus with caution</li>
+            <li>Subtle settings work best</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Sidechain Compression</h3>
+          <ul>
+            <li>Duck elements based on others</li>
+            <li>Bass ducking to kick drum</li>
+            <li>Create pumping effects</n>
+            <li>Use in EDM production</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Limiting & Maximizing</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Brickwall Limiting</h3>
+          <ul>
+            <li>Set ceiling to -0.3 to -1.0 dBFS</li>
+            <li>1-3dB gain reduction for mastering</li>
+            <li>Use true peak limiting</li>
+            <li>Check for distortion</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Loudness Maximizing</h3>
+          <ul>
+            <li>Multiple stages work best</li>
+            <li>Start with gentle compression</li>
+            <li>Add limiting last</li>
+            <li>Reference commercial tracks</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cheat-section">
+      <h2>Dynamic Processing by Instrument</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <h3>Vocals</h3>
+          <ul>
+            <li>2:1 to 4:1 ratio</li>
+            <li>Medium attack (5-20ms)</li>
+            <li>Auto or medium release</li>
+            <li>3-6dB gain reduction</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Drums</h3>
+          <ul>
+            <li>Parallel compression</li>
+            <li>4:1 to 8:1 ratio</li>
+            <li>Fast attack, fast release</li>
+            <li>Up to 10dB reduction</li>
+          </ul>
+        </div>
+        <div class="cheat-item">
+          <h3>Bass</h3>
+          <ul>
+            <li>4:1 ratio</li>
+            <li>Medium attack</li>
+            <li>Sidechain to kick</li>
+            <li>3-6dB reduction</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</CleanLayout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-section {
+    margin-bottom: 3rem;
+  }
+
+  .cheat-section h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cheat-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cheat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .cheat-item h3 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cheat-item ul {
+    padding-left: 1.2rem;
+    margin: 0.75rem 0 0 0;
+  }
+
+  .cheat-item li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .cheat-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+</style>

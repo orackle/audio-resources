@@ -1,0 +1,362 @@
+---
+interface ReverbVisualizerProps {
+  width?: string;
+  height?: string;
+  reverbType?: 'hall' | 'plate' | 'room' | 'spring' | 'cathedral';
+  decayTime?: number;
+  preDelay?: number;
+  mix?: number;
+  showControls?: boolean;
+}
+
+const {
+  width = '100%',
+  height = '400px',
+  reverbType = 'hall',
+  decayTime = 2.5,
+  preDelay = 20,
+  mix = 30,
+  showControls = true
+} = Astro.props;
+
+const id = `reverb-visualizer-${Math.random().toString(36).substr(2, 9)}`;
+
+const reverbPresets = {
+  hall: {
+    name: 'Concert Hall',
+    description: 'Large, spacious reverb with long decay',
+    decay: 2.5,
+    preDelay: 30,
+    color: '#4fd1c5',
+    earlyReflections: 0.7,
+    diffusion: 0.8
+  },
+  plate: {
+    name: 'Plate',
+    description: 'Smooth, dense reverb with bright character',
+    decay: 1.8,
+    preDelay: 10,
+    color: '#f6ad55',
+    earlyReflections: 0.5,
+    diffusion: 0.9
+  },
+  room: {
+    name: 'Room',
+    description: 'Natural sounding small to medium room',
+    decay: 1.2,
+    preDelay: 5,
+    color: '#4299e1',
+    earlyReflections: 0.8,
+    diffusion: 0.7
+  },
+  spring: {
+    name: 'Spring',
+    description: 'Classic spring reverb with characteristic boing',
+    decay: 1.5,
+    preDelay: 5,
+    color: '#9f7aea',
+    earlyReflections: 0.3,
+    diffusion: 0.6
+  },
+  cathedral: {
+    name: 'Cathedral',
+    description: 'Massive, long decay with complex reflections',
+    decay: 5.0,
+    preDelay: 50,
+    color: '#f56565',
+    earlyReflections: 0.9,
+    diffusion: 0.95
+  }
+};
+
+const currentPreset = reverbPresets[reverbType] || reverbPresets.hall;
+---
+
+<div class="reverb-visualizer" style={`width: ${width}; height: ${height};`}>
+  <div class="visualization-container">
+    <div class="reverb-display" id={`${id}-display`}>
+      <div class="early-reflections" id={`${id}-early-reflections`}></div>
+      <div class="decay-tail" id={`${id}-decay-tail`}></div>
+      <div class="impulse" id={`${id}-impulse"></div>
+    </div>
+    
+    {showControls && (
+      <div class="controls">
+        <div class="control-group">
+          <label for={`${id}-reverb-type`}>Reverb Type</label>
+          <select id={`${id}-reverb-type`} class="reverb-type">
+            {Object.entries(reverbPresets).map(([key, preset]) => (
+              <option value={key} {reverbType === key ? 'selected' : ''}>
+                {preset.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label for={`${id}-decay-time`}>Decay: <span id={`${id}-decay-value">{currentPreset.decay.toFixed(1)}s</span></label>
+          <input 
+            type="range" 
+            id={`${id}-decay-time"`}
+            min="0.1" 
+            max="10" 
+            value={currentPreset.decay} 
+            step="0.1"
+          />
+        </div>
+        
+        <div class="control-group">
+          <label for={`${id}-pre-delay`}>Pre-delay: <span id={`${id}-predelay-value">{currentPreset.preDelay}ms</span></label>
+          <input 
+            type="range" 
+            id={`${id}-pre-delay"`}
+            min="0" 
+            max="200" 
+            value={currentPreset.preDelay} 
+            step="1"
+          />
+        </div>
+        
+        <div class="control-group">
+          <label for={`${id}-mix`}>Mix: <span id={`${id}-mix-value">{mix}%</span></label>
+          <input 
+            type="range" 
+            id={`${id}-mix"`}
+            min="0" 
+            max="100" 
+            value={mix} 
+            step="1"
+          />
+        </div>
+      </div>
+    )}
+    
+    <div class="preset-info">
+      <h4>{currentPreset.name}</h4>
+      <p>{currentPreset.description}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const display = document.getElementById('${id}-display');
+    const earlyReflections = document.getElementById('${id}-early-reflections');
+    const decayTail = document.getElementById('${id}-decay-tail');
+    const impulse = document.getElementById('${id}-impulse');
+    
+    const reverbTypeSelect = document.getElementById('${id}-reverb-type');
+    const decayTimeInput = document.getElementById('${id}-decay-time`');
+    const decayTimeValue = document.getElementById('${id}-decay-value');
+    const preDelayInput = document.getElementById('${id}-pre-delay`');
+    const preDelayValue = document.getElementById('${id}-predelay-value');
+    const mixInput = document.getElementById('${id}-mix`');
+    const mixValue = document.getElementById('${id}-mix-value');
+    
+    const reverbPresets = ${JSON.stringify(reverbPresets)};
+    
+    let currentPreset = reverbPresets[reverbTypeSelect.value];
+    
+    function updateVisualization() {
+      // Update colors based on preset
+      display.style.setProperty('--reverb-color', currentPreset.color);
+      
+      // Update early reflections
+      earlyReflections.style.opacity = currentPreset.earlyReflections;
+      
+      // Update decay tail
+      const decayTime = parseFloat(decayTimeInput.value);
+      decayTail.style.animationDuration = `${decayTime * 0.8}s`;
+      
+      // Update pre-delay
+      const preDelay = parseInt(preDelayInput.value);
+      earlyReflections.style.animationDelay = `${preDelay}ms`;
+      
+      // Update mix
+      const mix = parseInt(mixInput.value);
+      display.style.opacity = mix / 100;
+      
+      // Update values
+      decayTimeValue.textContent = `${decayTime.toFixed(1)}s`;
+      preDelayValue.textContent = `${preDelay}ms`;
+      mixValue.textContent = `${mix}%`;
+    }
+    
+    // Handle preset changes
+    reverbTypeSelect.addEventListener('change', (e) => {
+      currentPreset = reverbPresets[e.target.value];
+      decayTimeInput.value = currentPreset.decay;
+      preDelayInput.value = currentPreset.preDelay;
+      updateVisualization();
+    });
+    
+    // Handle control changes
+    [decayTimeInput, preDelayInput, mixInput].forEach(input => {
+      input.addEventListener('input', updateVisualization);
+    });
+    
+    // Initial update
+    updateVisualization();
+    
+    // Trigger animation on click
+    display.addEventListener('click', () => {
+      display.classList.remove('active');
+      void display.offsetWidth; // Trigger reflow
+      display.classList.add('active');
+    });
+    
+    // Auto-trigger animation on load
+    setTimeout(() => {
+      display.classList.add('active');
+    }, 500);
+  });
+</script>
+
+<style>
+  .reverb-visualizer {
+    background: #1a202c;
+    border-radius: 8px;
+    padding: 1rem;
+    color: #e2e8f0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .visualization-container {
+    position: relative;
+    height: 100%;
+  }
+  
+  .reverb-display {
+    position: relative;
+    width: 100%;
+    height: 60%;
+    background: #2d3748;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    --reverb-color: #4fd1c5;
+  }
+  
+  .early-reflections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--reverb-color) 10%,
+      transparent 20%,
+      var(--reverb-color) 30%,
+      transparent 40%,
+      var(--reverb-color) 50%,
+      transparent 60%,
+      var(--reverb-color) 70%,
+      transparent 80%,
+      var(--reverb-color) 90%,
+      transparent
+    );
+    opacity: 0.7;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.1s ease-out;
+  }
+  
+  .decay-tail {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to top,
+      var(--reverb-color),
+      transparent 90%
+    );
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s ease-out;
+  }
+  
+  .impulse {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 2px;
+    height: 100%;
+    background: #fff;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.05s ease-out;
+  }
+  
+  .reverb-display.active .early-reflections {
+    animation: earlyReflections 0.5s ease-out;
+  }
+  
+  .reverb-display.active .decay-tail {
+    animation: decayTail 2.5s ease-out;
+  }
+  
+  .reverb-display.active .impulse {
+    animation: impulse 0.1s ease-out;
+  }
+  
+  @keyframes earlyReflections {
+    0% { transform: scaleY(0); opacity: 0; }
+    10% { transform: scaleY(0.8); opacity: 0.7; }
+    100% { transform: scaleY(0.8); opacity: 0; }
+  }
+  
+  @keyframes decayTail {
+    0% { transform: scaleY(0); opacity: 0.8; }
+    10% { transform: scaleY(0.8); opacity: 0.8; }
+    100% { transform: scaleY(1); opacity: 0; }
+  }
+  
+  @keyframes impulse {
+    0% { transform: scaleY(0); opacity: 1; }
+    100% { transform: scaleY(1); opacity: 0; }
+  }
+  
+  .controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .control-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  select, input[type="range"] {
+    width: 100%;
+  }
+  
+  .preset-info {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+  }
+  
+  .preset-info h4 {
+    margin: 0 0 0.25rem 0;
+    color: var(--reverb-color, #4fd1c5);
+  }
+  
+  .preset-info p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #a0aec0;
+  }
+</style>

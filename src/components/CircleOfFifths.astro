@@ -1,0 +1,264 @@
+---
+interface CircleOfFifthsProps {
+  width?: string;
+  height?: string;
+  showMajor?: boolean;
+  showMinor?: boolean;
+  showDiminished?: boolean;
+}
+
+const {
+  width = '500px',
+  height = '500px',
+  showMajor = true,
+  showMinor = true,
+  showDiminished = true
+} = Astro.props;
+
+const id = `circle-of-fifths-${Math.random().toString(36).substr(2, 9)}`;
+
+const notes = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'A#', 'F'];
+const minorNotes = ['Am', 'Em', 'Bm', 'F#m', 'C#m', 'G#m', 'D#m', 'A#m', 'Fm', 'Cm', 'Gm', 'Dm'];
+const diminishedChords = ['B°', 'F#°', 'C#°', 'G#°', 'D#°', 'A#°', 'E°', 'B°', 'F°', 'C°', 'G°', 'D°'];
+
+const getKeySignature = (note: string) => {
+  const sharps = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#'];
+  const flats = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb'];
+  
+  const index = notes.indexOf(note);
+  if (index === -1) return '';
+  
+  if (index <= 6) {
+    return sharps.slice(0, index);
+  } else {
+    return flats.slice(0, 12 - index);
+  }
+};
+---
+
+<div class="circle-of-fifths" style={`width: ${width}; height: ${height};`}>
+  <canvas id={id}></canvas>
+  <div class="controls">
+    <label>
+      <input type="checkbox" checked={showMajor} id="${id}-show-major">
+      Show Major
+    </label>
+    <label>
+      <input type="checkbox" checked={showMinor} id="${id}-show-minor">
+      Show Minor
+    </label>
+    <label>
+      <input type="checkbox" checked={showDiminished} id="${id}-show-diminished">
+      Show Diminished
+    </label>
+  </div>
+  <div class="key-signature" id="${id}-key-signature">
+    <h4>Key Signature</h4>
+    <div id="${id}-signature-notes">Select a key</div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('${id}');
+    const ctx = canvas.getContext('2d');
+    const keySignatureEl = document.getElementById('${id}-key-signature');
+    const signatureNotesEl = document.getElementById('${id}-signature-notes');
+    
+    let showMajor = ${showMajor};
+    let showMinor = ${showMinor};
+    let showDiminished = ${showDiminished};
+    
+    // Update checkboxes
+    document.getElementById('${id}-show-major').addEventListener('change', (e) => {
+      showMajor = e.target.checked;
+      drawCircle();
+    });
+    
+    document.getElementById('${id}-show-minor').addEventListener('change', (e) => {
+      showMinor = e.target.checked;
+      drawCircle();
+    });
+    
+    document.getElementById('${id}-show-diminished').addEventListener('change', (e) => {
+      showDiminished = e.target.checked;
+      drawCircle();
+    });
+    
+    function resizeCanvas() {
+      const container = canvas.parentElement;
+      const dpr = window.devicePixelRatio || 1;
+      const rect = container.getBoundingClientRect();
+      
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
+      
+      ctx.scale(dpr, dpr);
+      drawCircle();
+    }
+    
+    function drawCircle() {
+      const width = canvas.width / window.devicePixelRatio;
+      const height = canvas.height / window.devicePixelRatio;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const radius = Math.min(width, height) * 0.4;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
+      
+      // Draw outer circle
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = '#4a5568';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      
+      // Draw inner circle for minor keys
+      if (showMinor) {
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius * 0.7, 0, Math.PI * 2);
+        ctx.strokeStyle = '#4a5568';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+      
+      // Draw inner circle for diminished chords
+      if (showDiminished) {
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius * 0.4, 0, Math.PI * 2);
+        ctx.strokeStyle = '#4a5568';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+      
+      // Draw hour markers and labels
+      const notes = ${JSON.stringify(notes)};
+      const minorNotes = ${JSON.stringify(minorNotes)};
+      const diminishedChords = ${JSON.stringify(diminishedChords)};
+      
+      notes.forEach((note, i) => {
+        const angle = (i / 12) * Math.PI * 2 - Math.PI / 2;
+        const x = centerX + Math.cos(angle) * radius * 0.85;
+        const y = centerY + Math.sin(angle) * radius * 0.85;
+        
+        // Draw major key
+        if (showMajor) {
+          ctx.fillStyle = '#4fd1c5';
+          ctx.beginPath();
+          ctx.arc(x, y, 20, 0, Math.PI * 2);
+          ctx.fill();
+          
+          ctx.fillStyle = '#1a202c';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.font = 'bold 14px Arial';
+          ctx.fillText(note, x, y);
+          
+          // Make it interactive
+          canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+            const distance = Math.sqrt(Math.pow(clickX - x, 2) + Math.pow(clickY - y, 2));
+            
+            if (distance <= 20) {
+              const keySignature = ${'`${JSON.stringify(getKeySignature('+note+'))}`'};
+              signatureNotesEl.innerHTML = keySignature
+                ? `<strong>${note} Major</strong><br>Sharps/Flats: ${keySignature.join(', ')}`
+                : '<strong>No sharps or flats</strong>';
+            }
+          });
+        }
+        
+        // Draw minor key
+        if (showMinor && minorNotes[i]) {
+          const minorX = centerX + Math.cos(angle) * radius * 0.55;
+          const minorY = centerY + Math.sin(angle) * radius * 0.55;
+          
+          ctx.fillStyle = '#f6ad55';
+          ctx.beginPath();
+          ctx.arc(minorX, minorY, 16, 0, Math.PI * 2);
+          ctx.fill();
+          
+          ctx.fillStyle = '#1a202c';
+          ctx.font = 'bold 12px Arial';
+          ctx.fillText(minorNotes[i], minorX, minorY);
+        }
+        
+        // Draw diminished chord
+        if (showDiminished && diminishedChords[i]) {
+          const dimX = centerX + Math.cos(angle) * radius * 0.25;
+          const dimY = centerY + Math.sin(angle) * radius * 0.25;
+          
+          ctx.fillStyle = '#f56565';
+          ctx.beginPath();
+          ctx.arc(dimX, dimY, 12, 0, Math.PI * 2);
+          ctx.fill();
+          
+          ctx.fillStyle = '#1a202c';
+          ctx.font = 'bold 10px Arial';
+          ctx.fillText(diminishedChords[i], dimX, dimY);
+        }
+      });
+    }
+    
+    // Initial draw
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+  });
+</script>
+
+<style>
+  .circle-of-fifths {
+    background: #1a202c;
+    border-radius: 8px;
+    padding: 1rem;
+    color: #e2e8f0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    position: relative;
+  }
+  
+  canvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 80vh;
+  }
+  
+  .controls {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .controls label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+  
+  .key-signature {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #2d3748;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .key-signature h4 {
+    margin: 0 0 0.5rem 0;
+    color: #a0aec0;
+  }
+  
+  #${id}-signature-notes {
+    font-size: 1.1rem;
+    min-height: 1.5rem;
+  }
+</style>

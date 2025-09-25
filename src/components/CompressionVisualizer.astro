@@ -1,0 +1,372 @@
+---
+interface CompressionVisualizerProps {
+  threshold?: number;
+  ratio?: number;
+  attack?: number;
+  release?: number;
+  knee?: number;
+  makeUpGain?: number;
+  width?: string;
+  height?: string;
+}
+
+const {
+  threshold = -20,
+  ratio = 4,
+  attack = 5,
+  release = 100,
+  knee = 5,
+  makeUpGain = 0,
+  width = '100%',
+  height = '300px'
+} = Astro.props;
+
+const id = `compression-visualizer-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class="compression-visualizer" style={`width: ${width}; height: ${height};`}>
+  <div class="controls">
+    <div class="control-group">
+      <label for={`${id}-threshold`}>Threshold: {threshold} dB</label>
+      <input type="range" id={`${id}-threshold`} min="-60" max="0" value={threshold} step="1"/>
+    </div>
+    
+    <div class="control-group">
+      <label for={`${id}-ratio`}>Ratio: {ratio}:1</label>
+      <input type="range" id={`${id}-ratio`} min="1" max="20" value={ratio} step="0.5"/>
+    </div>
+  </div>
+  
+  <div class="visualization">
+    <canvas id={id}></canvas>
+  </div>
+  
+  <div class="meter">
+    <div class="meter-label">Gain Reduction</div>
+    <div class="meter-bar" id={`${id}-meter`}>
+      <div class="meter-value" style="width: 0%;"></div>
+    </div>
+    <div class="meter-value-text" id={`${id}-meter-value`}>0 dB</div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Get canvas and context
+    const canvas = document.getElementById('${id}');
+    if (!canvas) {
+      console.error('Canvas element not found');
+      return;
+    }
+    
+    // Set canvas size
+    function resizeCanvas() {
+      const container = canvas.parentElement;
+      const dpr = window.devicePixelRatio || 1;
+      const rect = container.getBoundingClientRect();
+      
+      // Set display size in pixels
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = '300px';
+      
+      // Set actual size in memory (scaled for DPI)
+      canvas.width = Math.floor(rect.width * dpr);
+      canvas.height = Math.floor(300 * dpr);
+      
+      // Scale the drawing context
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      
+      // Redraw with new dimensions
+      drawCompressionCurve();
+    }
+    
+    // Initial resize
+    resizeCanvas();
+    
+    // Handle window resize
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Draw the compression curve
+    function drawCompressionCurve() {
+      const width = canvas.offsetWidth;
+      const height = 300;
+      const ctx = canvas.getContext('2d');
+      
+      // Clear the canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Scale the context
+      const dpr = window.devicePixelRatio || 1;
+      ctx.scale(dpr, dpr);
+      
+      // Draw background
+      ctx.fillStyle = '#1a202c';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Draw grid
+      ctx.strokeStyle = '#2d3748';
+      ctx.lineWidth = 1;
+      
+      // Vertical grid lines
+      for (let i = 0; i <= 10; i++) {
+        const x = (width / 10) * i;
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      
+      // Horizontal grid lines
+      for (let i = 0; i <= 6; i++) {
+        const y = (height / 6) * i;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+      
+      // Get current settings
+      const threshold = parseFloat(document.getElementById('${id}-threshold')?.value || -20);
+      const ratio = parseFloat(document.getElementById('${id}-ratio')?.value || 4);
+      
+      // Draw compression curve
+      ctx.strokeStyle = '#4fd1c5';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      
+      // Generate points for the compression curve
+      for (let x = 0; x <= width; x++) {
+        // Input level from -60dB to 0dB (left to right)
+        const inputDb = (x / width) * 60 - 60;
+        
+        // Apply compression
+        let outputDb = inputDb;
+        if (inputDb > threshold) {
+          const overThreshold = inputDb - threshold;
+          outputDb = threshold + (overThreshold / ratio);
+        }
+        
+        // Map dB to canvas y-coordinate (0dB at top, -60dB at bottom)
+        const y = ((outputDb + 60) / 60) * height;
+        
+        if (x === 0) {
+          ctx.moveTo(0, height - y);
+        } else {
+          ctx.lineTo(x, height - y);
+        }
+      }
+      
+      // Draw the curve
+      ctx.stroke();
+      
+      // Draw threshold line
+      const thresholdY = height - ((threshold + 60) / 60) * height;
+      ctx.strokeStyle = '#f56565';
+      ctx.setLineDash([5, 3]);
+      ctx.beginPath();
+      ctx.moveTo(0, thresholdY);
+      ctx.lineTo(width, thresholdY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      
+      // Add axis labels
+      ctx.fillStyle = '#e2e8f0';
+      ctx.font = '10px Arial';
+      ctx.textBaseline = 'middle';
+      
+      // X-axis labels (dB)
+      for (let i = 0; i <= 10; i += 2) {
+        const x = (width / 10) * i;
+        const db = i * 6 - 60; // -60dB to 0dB
+        ctx.fillText(`${db}dB`, x + 5, height - 10);
+      }
+      
+      // Y-axis labels (dB)
+      for (let i = 0; i <= 6; i++) {
+        const y = (height / 6) * i;
+        const db = 60 - (i * 10); // 60dB to 0dB
+        ctx.fillText(`${db}`, 5, y + 5);
+      }
+    }
+    
+    // Get references to input elements
+    const thresholdInput = document.getElementById('${id}-threshold');
+    const ratioInput = document.getElementById('${id}-ratio');
+    const thresholdLabel = document.querySelector(`label[for='${id}-threshold']`);
+    const ratioLabel = document.querySelector(`label[for='${id}-ratio']`);
+    
+    // Update visualization when controls change
+    function updateThreshold(e) {
+      const value = e ? e.target.value : thresholdInput.value;
+      if (thresholdLabel) {
+        thresholdLabel.textContent = `Threshold: ${value} dB`;
+      }
+      if (thresholdInput) {
+        thresholdInput.value = value;
+      }
+      drawCompressionCurve();
+    }
+    
+    function updateRatio(e) {
+      const value = e ? e.target.value : ratioInput.value;
+      if (ratioLabel) {
+        ratioLabel.textContent = `Ratio: ${value}:1`;
+      }
+      if (ratioInput) {
+        ratioInput.value = value;
+      }
+      drawCompressionCurve();
+    }
+    
+    // Add event listeners
+    if (thresholdInput) {
+      thresholdInput.addEventListener('input', updateThreshold);
+    }
+    
+    if (ratioInput) {
+      ratioInput.addEventListener('input', updateRatio);
+    }
+    
+    // Initial draw
+    window.addEventListener('resize', drawCompressionCurve);
+    drawCompressionCurve();
+    
+    // Simulate gain reduction meter
+    let gainReductionInterval = setInterval(updateMeter, 100);
+    
+    function updateMeter() {
+      const meter = document.getElementById('${id}-meter-value');
+      if (!meter) return;
+      const meterBar = meter.previousElementSibling.firstElementChild;
+      const gainReduction = (Math.random() * 12).toFixed(1);
+      const percentage = Math.min(100, (gainReduction / 12) * 100);
+      meterBar.style.width = `${percentage}%`;
+      meter.textContent = `${gainReduction} dB`;
+    }
+    
+    // Handle settings update from parent
+    const visualizer = document.getElementById('${id}').closest('.compression-visualizer');
+    if (visualizer) {
+      visualizer.updateSettings = (settings) => {
+        const { ratio, threshold } = settings;
+        
+        if (ratio !== undefined && ratioInput) {
+          ratioInput.value = ratio;
+          updateRatio({ target: { value: ratio } });
+        }
+        
+        if (threshold !== undefined && thresholdInput) {
+          thresholdInput.value = threshold;
+          updateThreshold({ target: { value: threshold } });
+        }
+        
+        drawCompressionCurve();
+      };
+      
+      // Add event listener for settings update
+      document.addEventListener('settings-update', (e) => {
+        if (e.detail) {
+          visualizer.updateSettings(e.detail);
+        }
+      });
+      
+      // Initial update of labels
+      updateThreshold({});
+      updateRatio({});
+    }
+    
+    // Clean up interval on component unmount
+    window.addEventListener('unload', () => {
+      clearInterval(gainReductionInterval);
+    });
+  });
+</script>
+
+<style>
+  compression-visualizer {
+    display: block;
+    width: 100%;
+  }
+  
+  .compression-visualizer {
+    background: #1a202c;
+    border-radius: 8px;
+    padding: 1.5rem;
+    color: #e2e8f0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: all 0.3s ease;
+  }
+  
+  .compression-visualizer.updating {
+    opacity: 0.9;
+    transform: scale(0.99);
+  }
+  
+  .controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .control-group {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+  }
+  
+  input[type="range"] {
+    width: 100%;
+  }
+  
+  .visualization {
+    background: #2d3748;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    height: 300px; /* Fixed height for better control */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .visualization canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .meter {
+    margin-top: 1rem;
+  }
+  
+  .meter-label {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .meter-bar {
+    background: #2d3748;
+    height: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .meter-value {
+    height: 100%;
+    background: #48bb78;
+    width: 0%;
+    transition: width 0.1s ease-out;
+  }
+  
+  .meter-value-text {
+    text-align: right;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    color: #a0aec0;
+  }
+</style>

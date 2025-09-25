@@ -1,13 +1,53 @@
 ---
 import CleanLayout from "../../layouts/CleanLayout.astro";
+import CompressionVisualizer from "../../components/CompressionVisualizer.astro";
 
 const title = "Compression Cheat Sheet";
-const description = "Optimal compression settings for different instruments";
+const description = "Interactive guide to compression settings and techniques";
 ---
 
 <CleanLayout {title} {description}>
   <main class="cheat-sheet">
-    <h1>Compression Cheat Sheet</h1>
+    <div class="header-section">
+      <h1>Compression Cheat Sheet</h1>
+      <p class="intro">Interactive guide to understanding and applying compression in your mixes. Adjust the controls below to see how different settings affect the compression curve.</p>
+    </div>
+    
+    <div class="visualizer-container">
+      <CompressionVisualizer 
+        threshold={-20}
+        ratio={4}
+        attack={5}
+        release={100}
+        width="100%"
+        height="350px"
+      />
+    </div>
+    
+    <div class="presets-section">
+      <h2>Common Compression Presets</h2>
+      <div class="presets-grid">
+        <button class="preset-btn" data-ratio="2" data-threshold="-15" data-attack="5" data-release="100">
+          <span class="preset-name">Vocal Smoothing</span>
+          <span class="preset-desc">Gentle leveling for vocals</span>
+        </button>
+        
+        <button class="preset-btn" data-ratio="4" data-threshold="-12" data-attack="10" data-release="200">
+          <span class="preset-name">Drum Punch</span>
+          <span class="preset-desc">Adds impact to drums</span>
+        </button>
+        
+        <button class="preset-btn" data-ratio="8" data-threshold="-6" data-attack="1" data-release="100">
+          <span class="preset-name">Bass Control</span>
+          <span class="preset-desc">Tight bass control</span>
+        </button>
+        
+        <button class="preset-btn" data-ratio="1.5" data-threshold="-25" data-attack="30" data-release="300">
+          <span class="preset-name">Glue Compression</span>
+          <span class="preset-desc">For bus compression</span>
+        </button>
+      </div>
+    </div>
     
     <section class="compression-section">
       <h2>Vocal Compression</h2>
@@ -15,6 +55,10 @@ const description = "Optimal compression settings for different instruments";
         <div class="setting">
           <span class="param">Ratio:</span>
           <span class="value">2:1 to 4:1</span>
+        </div>
+        <div class="setting">
+          <span class="param">Threshold:</span>
+          <span class="value">-15dB to -5dB</span>
         </div>
         <div class="setting">
           <span class="param">Attack:</span>
@@ -27,6 +71,10 @@ const description = "Optimal compression settings for different instruments";
         <div class="setting">
           <span class="param">Knee:</span>
           <span class="value">Soft (6-9dB)</span>
+        </div>
+        <div class="setting">
+          <span class="param">Gain Reduction:</span>
+          <span class="value">3-8dB</span>
         </div>
       </div>
     </section>
@@ -55,13 +103,103 @@ const description = "Optimal compression settings for different instruments";
   </main>
 </CleanLayout>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Get all preset buttons
+    const presetBtns = document.querySelectorAll('.preset-btn');
+    
+    // Add click event listeners to preset buttons
+    presetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Get the compression settings from data attributes
+        const settings = {
+          ratio: parseFloat(btn.dataset.ratio),
+          threshold: parseFloat(btn.dataset.threshold),
+          attack: parseFloat(btn.dataset.attack),
+          release: parseFloat(btn.dataset.release)
+        };
+        
+        // Find the visualizer container
+        const visualizer = document.querySelector('.compression-visualizer');
+        if (visualizer && typeof visualizer.updateSettings === 'function') {
+          // Update the visualizer with new settings
+          visualizer.updateSettings(settings);
+        } else {
+          console.error('Visualizer not found or updateSettings not available');
+        }
+      });
+    });
+  });
+</script>
+
 <style>
   .cheat-sheet {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem 1.5rem;
   }
-
+  
+  .header-section {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .header-section .intro {
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0.5rem auto 0;
+    line-height: 1.6;
+  }
+  
+  .visualizer-container {
+    background: var(--surface-2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .presets-section {
+    margin-bottom: 2.5rem;
+  }
+  
+  .presets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .preset-btn {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .preset-btn:hover {
+    background: var(--surface-3);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  
+  .preset-name {
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+  
+  .preset-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  
   .compression-section {
     background: var(--surface);
     border-radius: 8px;
@@ -76,11 +214,35 @@ const description = "Optimal compression settings for different instruments";
     gap: 1rem;
     margin-top: 1rem;
   }
+  
+  @media (max-width: 768px) {
+    .presets-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .settings-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .presets-grid,
+    .settings-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 
   .setting {
     background: var(--surface-2);
     padding: 1rem;
     border-radius: 6px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    border: 1px solid transparent;
+  }
+  
+  .setting:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
   }
 
   .param {
@@ -88,10 +250,14 @@ const description = "Optimal compression settings for different instruments";
     display: block;
     color: var(--accent);
     margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .value {
-    font-family: monospace;
+    font-family: 'Fira Code', 'Roboto Mono', monospace;
     font-size: 1.1em;
+    color: var(--text);
   }
 </style>

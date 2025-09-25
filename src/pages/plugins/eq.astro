@@ -1,5 +1,6 @@
 ---
 import CleanLayout from "../../layouts/CleanLayout.astro";
+import EQVisualization from "../../components/EQVisualization.astro";
 
 const title = "EQ Cheat Sheet";
 const description = "Frequency ranges and EQ tips for different instruments";
@@ -64,21 +65,176 @@ const sections = [
 ---
 
 <CleanLayout {title} {description}>
-  <main class="cheat-sheet">
+  <main class="container">
     <div class="back-link">
-      <a href="/">← Back to all cheats</a>
+      <a href="/">← Back to Plugins</a>
     </div>
     
-    <h1>{title}</h1>
+    <div class="cheatsheet-header">
+      <h1>{title}</h1>
+      <div class="cheatsheet-meta">
+        <span class="version">v1.0</span>
+      </div>
+    </div>
+    
+    <div class="section">
+      <p class="intro">Use this interactive EQ guide to understand frequency ranges and their impact on different instruments. Hover over the colored bands for detailed information about each frequency range.</p>
+      
+      <div class="tip">
+        <strong>💡 Tip:</strong> The frequency ranges shown are general guidelines. Always use your ears and adjust to fit the specific track and mix.
+      </div>
+    </div>
+
     
     {sections.map(section => (
-      <section class="cheat-section">
+      <section class="section">
         <h2>{section.title}</h2>
-        <div class="cheat-grid">
+        
+        {section.title === 'Vocal Frequencies' && (
+          <div class="visualization-container">
+            <EQVisualization 
+              instrument="Vocals"
+              frequencies={[
+                {
+                  range: [60, 250],
+                  label: 'Warmth',
+                  description: 'Adds body and fullness to vocals. Be careful not to overdo it to avoid muddiness.',
+                  color: '#4f46e5' // Indigo
+                },
+                {
+                  range: [250, 500],
+                  label: 'Mud',
+                  description: 'Can make vocals sound boxy. Gentle cuts here can add clarity.',
+                  color: '#8b5cf6' // Violet
+                },
+                {
+                  range: [2000, 5000],
+                  label: 'Presence',
+                  description: 'Adds clarity and intelligibility. Essential for cutting through the mix.',
+                  color: '#ec4899' // Pink
+                },
+                {
+                  range: [5000, 10000],
+                  label: 'Air',
+                  description: 'Adds brightness and airiness to vocals. Use a high shelf for subtle enhancement.',
+                  color: '#f59e0b' // Amber
+                }
+              ]}
+            />
+          </div>
+        )}
+
+        {section.title === 'Instruments' && (
+          <div class="visualization-container">
+            <EQVisualization 
+              instrument="Drums & Bass"
+              frequencies={[
+                {
+                  range: [40, 100],
+                  label: 'Kick Thump',
+                  description: 'The fundamental punch of the kick drum. Boosting here adds weight.',
+                  color: '#3b82f6' // Blue
+                },
+                {
+                  range: [100, 250],
+                  label: 'Snare Body',
+                  description: 'The body and fullness of the snare drum.',
+                  color: '#8b5cf6' // Violet
+                },
+                {
+                  range: [700, 1000],
+                  label: 'Bass Attack',
+                  description: 'The attack and definition of bass guitar. Boosting here adds presence.',
+                  color: '#ec4899' // Pink
+                },
+                {
+                  range: [2000, 4000],
+                  label: 'Snare Snap',
+                  description: 'The attack and snap of the snare drum.',
+                  color: '#f59e0b' // Amber
+                },
+                {
+                  range: [5000, 10000],
+                  label: 'Cymbal Shine',
+                  description: 'The brightness and air of cymbals and hi-hats.',
+                  color: '#10b981' // Emerald
+                }
+              ]}
+            />
+            
+            <div class="visualization-container" style="margin-top: 2rem">
+              <EQVisualization 
+                instrument="Guitars & Keys"
+                frequencies={[
+                  {
+                    range: [80, 250],
+                    label: 'Body',
+                    description: 'The body and warmth of acoustic guitars and pianos.',
+                    color: '#3b82f6' // Blue
+                  },
+                  {
+                    range: [300, 800],
+                    label: 'Mud Zone',
+                    description: 'Can make guitars sound boxy. Often needs gentle cutting.',
+                    color: '#8b5cf6' // Violet
+                  },
+                  {
+                    range: [1000, 3000],
+                    label: 'Presence',
+                    description: 'Adds clarity and definition to guitar and piano parts.',
+                    color: '#ec4899' // Pink
+                  },
+                  {
+                    range: [4000, 8000],
+                    label: 'Brightness',
+                    description: 'Adds sparkle and air to acoustic instruments.',
+                    color: '#f59e0b' // Amber
+                  }
+                ]}
+              />
+            </div>
+          </div>
+        )}
+
+        {section.title === 'Common Problem Frequencies' && (
+          <div class="visualization-container">
+            <EQVisualization 
+              instrument="Watch Out For"
+              frequencies={[
+                {
+                  range: [200, 500],
+                  label: 'Mud Zone',
+                  description: 'Can make mixes sound muddy. Often needs cutting across multiple tracks.',
+                  color: '#ef4444' // Red
+                },
+                {
+                  range: [300, 800],
+                  label: 'Boxiness',
+                  description: 'Can make instruments sound like they\'re in a box. Common in guitars and vocals.',
+                  color: '#f97316' // Orange
+                },
+                {
+                  range: [2000, 5000],
+                  label: 'Harshness',
+                  description: 'Can cause ear fatigue. Common in cymbals, distorted guitars, and sibilant vocals.',
+                  color: '#eab308' // Yellow
+                },
+                {
+                  range: [100, 300],
+                  label: 'Boominess',
+                  description: 'Can make mixes sound boomy. Common in kick drums and bass.',
+                  color: '#8b5cf6' // Violet
+                }
+              ]}
+            />
+          </div>
+        )}
+
+        <div class="settings-grid">
           {section.items.map(item => (
-            <div class="cheat-item">
-              <h3>{item.title}</h3>
-              <p>{item.content}</p>
+            <div class="setting">
+              <span class="param">{item.title}</span>
+              <span class="value">{item.content}</span>
             </div>
           ))}
         </div>
@@ -88,10 +244,265 @@ const sections = [
 </CleanLayout>
 
 <style>
-  .container {
-    max-width: 900px;
+  /* Layout */
+  .section { 
+    margin-bottom: 2.5rem;
+    padding: 0 1.5rem;
+  }
+  .container { 
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1.5rem 2rem;
+  }
+  
+  /* Main content area */
+  main {
+    padding: 1.5rem 0;
+  }
+  
+  /* Header */
+  .cheatsheet-header {
+    margin-bottom: 2.5rem;
+    padding: 0 1.5rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .cheatsheet-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  
+  .version {
+    background: var(--surface-2);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: 'Space Grotesk', monospace;
+  }
+
+  h1 {
+    margin: 0 0 0.5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  
+  h2 {
+    margin: 2rem 0 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 3px;
+  }
+  
+  /* Content Blocks */
+  .intro {
+    background: var(--surface-2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+    line-height: 1.6;
+  }
+  
+  .tip {
+    background: var(--surface-2);
+    border-left: 3px solid var(--accent);
+    padding: 1rem;
+    border-radius: 0 4px 4px 0;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  
+  .tip strong {
+    color: var(--accent);
+  }
+  
+  /* Navigation */
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+  
+  .back-link a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+  
+  .back-link a:hover {
+    color: var(--accent);
+  }
+  
+  /* Grid & Settings */
+  .settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .setting {
+    background: var(--surface-2);
+    padding: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .setting:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  
+  .param {
+    font-weight: 600;
+    display: block;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .value {
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  
+  /* Visualization */
+  .visualization-container {
+    margin: 2rem 0;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1.5rem 1rem;
+    }
+    
+    h1 {
+      font-size: 1.75rem;
+    }
+    
+    h2 {
+      font-size: 1.3rem;
+    }
+    
+    .settings-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .setting {
+      padding: 1rem;
+    }
+  }
+  
+  .param {
+    font-weight: 600;
+    display: block;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .value {
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  
+  h1 {
+    margin: 1rem 0 2rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  
+  h2 {
+    margin: 2rem 0 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 3px;
+  }
+  
+  .back-link {
+    margin-bottom: 1.5rem;
+  }
+  
+  .back-link a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+  
+  .back-link a:hover {
+    color: var(--accent);
+  }
+  
+  .intro {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+  }
+  
+  .intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .intro p {
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
+  }
+  
+  .tip {
+    background: rgba(99, 102, 241, 0.1);
+    border-left: 3px solid var(--accent);
+    padding: 0.75rem 1rem;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .tip strong {
+    font-weight: 600;
   }
 
   .back-link {
@@ -128,27 +539,16 @@ const sections = [
     margin-top: 1.5rem;
   }
 
-  .cheat-item {
-    background: var(--surface);
-    padding: 1.5rem;
+  .intro {
+    background: var(--surface-2);
     border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
     border: 1px solid var(--border);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-
-  .cheat-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-
-  .cheat-item h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: var(--accent);
-  }
-
+  
   @media (max-width: 768px) {
-    .cheat-grid {
+    .settings-grid {
       grid-template-columns: 1fr;
     }
     
